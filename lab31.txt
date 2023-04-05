@@ -1,0 +1,9 @@
+sudo loginctl enable-linger student
+mkdir ~/mydb
+podman unshare chown 27:27
+podman run -d -p 3206:3206 --name mydb -v /home/student/mydb:/var/lib/mysql:Z -e MYSQL_ROOT_PASSWORD=password quay.io/centos7/mariadb-103-centos7
+mkdir -p .config/systemd/user; cd .config/systemd/user
+podman generate systemd --name mydb --files --new
+systemctl --user daemon-reload
+systemctl --user enable container-mydb.service
+systemctl --user status container-mydb.service

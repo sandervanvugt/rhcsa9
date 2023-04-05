@@ -1,1 +1,1 @@
-This repository contains files for use in my RHCSA RHEL9 video course
+This Git repository contains supporting files for all of my RHCSA video courses. 
