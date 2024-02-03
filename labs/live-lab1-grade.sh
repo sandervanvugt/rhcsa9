@@ -16,7 +16,7 @@ then
 	echo -e "\033[32m[OK]\033[0m\t\t file /root/archive.tgz was found"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t I can't find the file /root/archive.tgz. Did you use \033[1mtar -cvf\033[0m to create it?" && exit 2
+	echo -e "\033[31m[FAIL]\033[0m\t\t I can't find the file /root/archive.tgz. Did you use \033[1mtar -cvf\033[0m to create it?" 
 fi
 
 if tar -tvf /root/archive.tgz | grep 'etc/hosts' &>/dev/null
