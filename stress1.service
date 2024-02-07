@@ -1,7 +1,0 @@
-[Unit]
-Description=create some stress
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/dd if=/dev/zero of=/dev/null
-CPUShares=1024
