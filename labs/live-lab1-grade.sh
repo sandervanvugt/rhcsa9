@@ -42,7 +42,7 @@ fi
 
 if [[ $(head -n 1 /var/tmp/users) == adm ]] &>/dev/null
 then
-	echo -e "\033[32[OK]\033[0m\t\t The file /var/tmp/users has the expected username on the first line"
+	echo -e "\033[32m[OK]\033[0m\t\t The file /var/tmp/users has the expected username on the first line"
 	SCORE=$(( SCORE + 30 ))
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t The first line of the file /var/tmp/users didn't contain the expected username. Are you sure you have used \033[1msort\033[0m to sort the output?"
