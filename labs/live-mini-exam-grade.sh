@@ -78,22 +78,22 @@ TOTAL=$(( TOTAL + 30 ))
 
 
 ###task 3
-#/tmp/stratorfiles
+#/tmp/stratorfiles.txt
 echo -e "\033[1mevaluating task 3\033[0m"| tee -a /tmp/exam-report.txt
-if [ -f /tmp/stratorfiles ]
+if [ -f /tmp/stratorfiles.txt ]
 then
-	echo -e "\033[32m[OK]\033[0m\t\t File /tmp/stratofiles was found"
+	echo -e "\033[32m[OK]\033[0m\t\t File /tmp/stratorfiles.txt was found"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t File /tmp/stratorfiles was not found"| tee -a /tmp/exam-report.txt
+	echo -e "\033[31m[FAIL]\033[0m\t\t File /tmp/stratorfiles.txt was not found"| tee -a /tmp/exam-report.txt
 fi
 
-if grep '/etc/services' /tmp/stratorfiles &>/dev/null
+if grep '/etc/services' /tmp/stratorfiles.txt &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t /tmp/stratorfiles content looking all right"
+	echo -e "\033[32m[OK]\033[0m\t\t /tmp/stratorfiles.txt content looking all right"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t /tmp/stratorfiles content not looking good"| tee -a /tmp/exam-report.txt
+	echo -e "\033[31m[FAIL]\033[0m\t\t /tmp/stratorfiles.txt content not looking good"| tee -a /tmp/exam-report.txt
 fi
 TOTAL=$(( TOTAL + 20 ))
 
@@ -164,13 +164,13 @@ else
 	echo -e "\033[31m[FAIL]\033[0m\t\t lvlab size is not 50 extents"| tee -a /tmp/exam-report.txt
 fi
 
-# format with ext4
-if blkid $(ls /dev/mapper/* | grep lvlab) | grep ext4 &>/dev/null
+# format with xfs
+if blkid $(ls /dev/mapper/* | grep lvlab) | grep xfs &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t lvlab is formatted with ext4"
+	echo -e "\033[32m[OK]\033[0m\t\t lvlab is formatted with xfs"
 	SCORE=$(( SCORE + 10 ))
 else	
-	echo -e "\033[31m[FAIL]\033[0m\t\t no ext4 found on lvlab"| tee -a /tmp/exam-report.txt
+	echo -e "\033[31m[FAIL]\033[0m\t\t no xfs found on lvlab"| tee -a /tmp/exam-report.txt
 fi
 
 # mount peristently on /lvlab
