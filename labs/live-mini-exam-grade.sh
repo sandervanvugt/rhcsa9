@@ -210,7 +210,7 @@ TOTAL=$(( TOTAL + 60 ))
 
 ###task 7
 echo -e "\033[1mevaluating task 7\033[0m"| tee -a /tmp/exam-report.txt
-if [[ $(tuned-adm active 2>/dev/null | tail -1 | awk '{ print $3 }') == $(tuned-adm recommend 2>/dev/null) ]]
+if [[ $(tuned-adm active 2>/dev/null | tail -1 | awk '{ print $4 }') == $(tuned-adm recommend 2>/dev/null) ]]
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the recommended tuned profile matches the current tuned profile"
         SCORE=$(( SCORE + 10 ))
