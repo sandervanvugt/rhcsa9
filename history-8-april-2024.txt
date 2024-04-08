@@ -1,0 +1,182 @@
+    1  vim countdown
+    2  chmod +x countdown 
+    3  ./countdown 28
+    4  ./countdown 25 lab
+    5  history
+    6  tar czvf /root/archive.tgz /etc
+    7  tar tvf /root/archive.tgz 
+    8  tar xvf /root/archive.tgz 
+    9  ls
+   10  history
+   11  cut -d : -f 1 /etc/passwd
+   12  cut -d : -f 1 /etc/passwd | sort
+   13  cut -d : -f 1 /etc/passwd | sort | grep -v '^$' > /var/tmp/users
+   14  useradd bob
+   15  find / -type f -user bob | wc -l
+   16  find / -user bob | wc -l
+   17  mkdir /root/userfiles/; find / -type f -user bob -exec cp {} /root/userfiles/ \;
+   18  ls userfiles/
+   19  ls -a userfiles/
+   20  history
+   21  df -h
+   22  dd if=/dev/sr0 of=/rhel9.iso bs=1M<
+   23  dd if=/dev/sr0 of=/rhel9.iso bs=1M
+   24  ls -l /rhel9.iso 
+   25  ls -lh /rhel9.iso 
+   26  mkdir /repo
+   27  vim /etc/fstab
+   28  mount -a
+   29  ls /repo
+   30  ls /repo/BaseOS/
+   31  ls /repo/BaseOS/Packages/
+   32  history
+   33  dnf config-manager --add-repo="file:///repo/BaseOS"
+   34  dnf config-manager --add-repo="file:///repo/AppStream"
+   35  dnf repolist
+   36  dnf install -y nmap
+   37  cd /etc/yum.repos.d/
+   38  ls
+   39  vim repo_BaseOS.repo 
+   40  vim repo_AppStream.repo 
+   41  dnf install -y nmap
+   42  cat /etc/os-release 
+   43  history
+   44  cat repo_BaseOS.repo 
+   45  dnf list all
+   46  dnf list all | less
+   47  dnf list selinu
+   48  dnf list selinu*
+   49  dnf provides */sealert
+   50  dnf provides */Containerfile
+   51  history
+   52  dnf groups list
+   53  dnf groups install "System Tools"
+   54  dnf repolist
+   55  cd /etc/yum.repos.d/
+   56  ls
+   57  vim repo_BaseOS.repo 
+   58  history
+   59  cd
+   60  visudo
+   61  exit
+   62  visudo
+   63  useradd lisa
+   64  useradd linda
+   65  su - linda
+   66  passwd linda
+   67  su - linda
+   68  journalctl
+   69  visudo
+   70  su - linda
+   71  cat /etc/passwd
+   72  man useradd
+   73  vim /etc/login.defs 
+   74  useradd --help
+   75  passwd --help
+   76  echo password | passwd --stdin lisa
+   77  passwd lisa
+   78  id student
+   79  groupadd whatever
+   80  useradd bob -G whatever
+   81  usermod bob -aG whatever
+   82  id bob
+   83  cd /etc/skel
+   84  ls -a
+   85  touch blah
+   86  useradd --help
+   87  cd
+   88  less /etc/passwd
+   89  lid -g wheel
+   90  grep wheel /etc/groups
+   91  grep wheel /etc/group
+   92  man login
+   93  man nologin
+   94  man false
+   95  dnf install -y git
+   96  git clone https://github.com/sandervanvugt/rhcsa9
+   97  cd rhcsa9/
+   98  LS
+   99  ls
+  100  cd labs/
+  101  ls
+  102  ./live-lab1-grade.sh 
+  103  history
+  104  ls -l /home
+  105  cd
+  106  cd /home/linda
+  107  touch rootfile
+  108  ls -l
+  109  echo hello > rootfile 
+  110  ls -l
+  111  pwd
+  112  su - linda
+  113  echo linda > lindafile
+  114  chown linda:linda lindafile 
+  115  chown 064 lindafile 
+  116* 
+  117  chown linda:linda lindafile 
+  118  chmod 064 lindafile 
+  119  ls -l
+  120  su - linda
+  121  history
+  122  touch newrotfile
+  123  su - linda
+  124  cd
+  125  mkdir files
+  126  chmod 750 files
+  127  ls -ld files/
+  128  cd files/
+  129  mkdir new
+  130  mkdir old
+  131  cd new
+  132  touch newfile
+  133  touch ../oldfile
+  134  cd ..
+  135  chmod -R +x files
+  136  ls -l files/oldfile 
+  137  chmod -R -x files
+  138  ls -ld files/
+  139  chmod -R +X files
+  140  ls -ld files/
+  141  ls -l files/
+  142  lsattr files/
+  143  lsattr -d files/
+  144  lsattr files/
+  145  chattr +i files/
+  146  lsattr -d files/
+  147  touch files/blah
+  148  cd files/
+  149  ls
+  150  echo hello > blah
+  151  cd ..
+  152  rm -rf files/
+  153  chattr -i files/
+  154  rm -rf files/
+  155  groupadd profs
+  156  useradd anna -G profs
+  157  useradd anouk -G profs
+  158  groupadd students
+  159  usermod -aG students linda
+  160  usermod -aG students lisa
+  161  su - anna
+  162  mkdir /data/profs
+  163  mkdir -p /data/profs /data/students
+  164  chgrp profs /data/profs
+  165  chgrp students /data/student
+  166  chgrp students /data/students
+  167  chmod 770 /data/*
+  168  ls -l /data
+  169  su - anna
+  170  chmod g+s /data/profs
+  171  su - anna
+  172  su - anouk
+  173  chmod +t /data/profs
+  174  ls -ld /data/profs
+  175  chmod g-x,o+x /data/profs/
+  176  ls -ld /data/profs
+  177  chmod g+x,o-x /data/profs/
+  178  su - anouk
+  179  su - anna
+  180  lsblk
+  181  history
+
