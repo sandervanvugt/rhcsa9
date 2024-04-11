@@ -13,6 +13,7 @@ LIVE COURSES
 
 ON DEMAND COURSES
 *	Red Hat Certified Systems Administrator (RHCSA) RHEL 9: https://learning.oreilly.com/course/red-hat-certified/9780137931521/
+*	SELinux: https://learning.oreilly.com/course/mastering-security-enhanced-linux/9780138282691/
 
 BOOK
 *	Red Hat RHCSA 9 Cert Guide: https://learning.oreilly.com/library/view/red-hat-rhcsa/9780138096311/
