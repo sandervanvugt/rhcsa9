@@ -1,0 +1,313 @@
+    1  ls -l $(which dnf)
+    2  ls -l $(which yum)
+    3  rpm -qa 
+    4  rpm -qa | grep selinux
+    5  history
+    6  cat /etc/redhat-release 
+    7  dnf list all
+    8  dnf list all | wc -l
+    9  dnf list installed
+   10  dnf list installed | wc -l
+   11  dnf install nmap
+   12  dnf repolist
+   13  df -h
+   14  lsblk
+   15  dd if=/dev/sr0 of=/rhel9.iso bs=1M
+   16  ls -l /rhel9.iso 
+   17  mkdir /repo
+   18  vim /etc/fstab
+   19  tail -1 /etc/fstab
+   20  mount -a
+   21  ls -l repo
+   22  ls -l /repo
+   23  ls -l /repo/BaseOS/Packages/
+   24  ls -l /repo/AppStream/Packages/
+   25  ls -l /repo
+   26  history
+   27  dnf install nmap
+   28  dnf config-manager --add-repo="file:///repo/BaseOS"
+   29  dnf config-manager --add-repo="file:///repo/AppStream"
+   30  dnf install nmap
+   31  cd /etc/yum.repos.d/
+   32  ls
+   33  vim repo_BaseOS.repo 
+   34  vim repo_AppStream.repo 
+   35  dnf install nmap
+   36  history
+   37  findmnt
+   38  lsblk
+   39  ls /repo
+   40  cd
+   41  dnf list selinux*
+   42  dnf search seinfo
+   43  dnf search all seinfo
+   44  dnf provides */seinfo
+   45  dnf info setools-console
+   46  dnf groups list
+   47  dnf groups install "
+   48  dnf groups install "System Tools"
+   49  dnf groups list hidden
+   50  git clone https://github.com/sandervanvugt/rhcsa9
+   51  ls /rhcsa9
+   52  ls rhcsa9
+   53  ls rhcsa
+   54  history
+   55  cd /etc
+   56  tar cvzf /root/archive.tgz .
+   57  tar tvf /root/archive.tgz 
+   58  tar czvf /root/archive2.tgz -C /etc .
+   59  ls -l /root/arc*
+   60  cut -d : -f 1 /etc/passwd
+   61  cut -d : -f 1 /etc/passwd | sort
+   62  cut -d : -f 1 /etc/passwd | sort | grep -v '^$' > /var/tmp/users
+   63  cat /var/tmp/users
+   64  useradd bob
+   65  find / -user bob -type f
+   66  mkdir /root/userfiles ; find / -user bob -type f -exec cp {} /root/userfiles \;
+   67  ls -al /root/userfiles/
+   68  cd
+   69  cd rhcsa9/
+   70  ls
+   71  cd labs
+   72  ls
+   73  ./live-lab1-grade.sh 
+   74  vim live-lab1-grade.sh 
+   75  cd ..
+   76  cat resources.txt 
+   77  history
+   78  visudo
+   79  useradd linda
+   80  echo password | passwd --stdin linda
+   81  su - linda
+   82  visudo
+   83  su - linda
+   84  visudo
+   85  history
+   86  tail /etc/sudoers
+   87  poweroff
+   88  history
+   89  lsblk
+   90  ls /proc
+   91  cat /proc/partitions 
+   92  lsblk
+   93  fdisk /dev/nvme0n1
+   94  lsblk
+   95  mkfs.xfs /dev/nvme0n1p4
+   96  mount /dev/nvme0n1p4 /mnt
+   97  lsblk
+   98  cp /etc/hosts /mnt
+   99  history
+  100  fdisk -l /dev/nvme0n1
+  101  fdisk /dev/nvme0n1
+  102  lsblk
+  103  fdisk /dev/nvme0n2
+  104  lsblk
+  105  mkfs.xfs /dev/nvme0n2p5
+  106  mkfs.ext4 /dev/nvmen2p6
+  107  mkfs.ext4 /dev/nvme0n2p6
+  108  mkdir /xfs /ext4
+  109  vim /etc/fstab
+  110  mount -a
+  111  lsblk
+  112  reboot
+  113  lsblk
+  114  touch gg
+  115  vim /etc/fstab
+  116  blkid
+  117  blkid | awk '/n2p5/ { print $2 }'
+  118  blkid | awk '/n2p5/ { print $2 }' >> /etc/fstab
+  119  vim /etc/fstab
+  120  mount -a
+  121  lsblk
+  122  reboot
+  123  lsblk
+  124  blkid
+  125  fdisk /dev/nvme0n2
+  126  mkfs.vfat --help
+  127  mkfs.vfat -n HAPPY /dev/nvme0n2p6
+  128  vim /etc/fstab
+  129  mount -a
+  130  findmnt --verify
+  131  mkdir /happy
+  132  mount -a
+  133  blkid
+  134  vim /etc/fstab
+  135  mount -a
+  136  mkfs.ext2 --help | less
+  137  vim /etc/default/grub 
+  138  grub2-mkconfig -o /boot/grub2/grub.cfg
+  139  reboot
+  140  blkid
+  141  vim /etc/fstab
+  142  q!
+  143  mount
+  144  touch dd
+  145  mount -o remount,rw /
+  146  vim /etc/fstab
+  147  mount -a
+  148  reboot
+  149  lvs
+  150  lsblk
+  151  reboot
+  152  history > /tmp/08-oct-24.txt
+  153  ip a
+  154  poweroff
+  155  systemctl list-units
+  156  systemctl start graphical.target
+  157  systemctl status httpd.service
+  158  systemctl list-dependencies 
+  159  systemctl set-default graphical.target
+  160  systemctl list-dependencies 
+  161  history
+  162  vim /etc/default/grub 
+  163  #grub2-mkconfig -o /boot/grub2/grub.cfg
+  164  dnf install -y nfs-utils
+  165  showmount -e 192.168.29.192
+  166  mount 192.168.29.192:/nfsdata /mnt
+  167  mount
+  168  vim /etc/auto.master
+  169  dnf install -y autofs
+  170  vim /etc/auto.master
+  171  vim /etc/auto.misc
+  172  vim /etc/auto.master
+  173  vim /etc/auto.nfsdata
+  174  vim /etc/hosts
+  175  ls /
+  176  dnf install -y autofs
+  177  systemctl enable --now autofs
+  178  ls /
+  179  cd /nfsdata
+  180  ls -a
+  181  cd files
+  182  pwd
+  183  mount
+  184  cd /
+  185  vim /etc/auto.master
+  186  vim /etc/auto.ldap
+  187  systemctl restart autofs
+  188  cd /home/ldap/
+  189  ls -a
+  190  cd ldapuser1
+  191  pwd
+  192  cd ..
+  193  cd ldapuser3
+  194  cd ..
+  195  cd ldapuser11
+  196  history
+  197  head /etc/auto.master
+  198  cat /etc/auto.nfsdata 
+  199  cat /etc/auto.ldap 
+  200  getenforce
+  201  setenforce permissive
+  202  ls /etc/hosts
+  203  ls -l /etc/hosts
+  204  ls -lZ /etc/hosts
+  205  ls -Z /var/www
+  206  ps Zaux | grep http
+  207  ls -Zd /var/tmp
+  208  cd 
+  209  cd rhcsa9/
+  210  ./countdown 12
+  211  history
+  212  vim /etc/httpd/conf/httpd.conf 
+  213  mkdir /web
+  214  vim /web/index.html
+  215  systemctl restart httpd
+  216  curl localhost
+  217  getenforce
+  218  vim /etc/httpd/conf/httpd.conf 
+  219  systemctl restart httpd
+  220  curl localhost
+  221  setenforce enforcing
+  222  curl localhost
+  223  grep AVC /var/log/audit/audit.log 
+  224  ls -Zd /web /var/www/html
+  225  history
+  226  grep -A 10 DocumentRoot /etc/httpd/conf/httpd.conf 
+  227  man semanage-fcontext
+  228  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  229  restorecon -Rv /web
+  230  cd /etc/selinux/
+  231  ls
+  232  cd targeted/
+  233  ls
+  234  cd contexts/
+  235  ls
+  236  cd files/
+  237  ls
+  238  cat file_contexts.local
+  239  dnf install -y selinux-policy-doc
+  240  man -k _selinux
+  241  man -k _selinux | grep http
+  242  man httpd_selinux
+  243  vim /etc/httpd/conf/httpd.conf 
+  244  systemctl restart httpd
+  245  systemctl status httpd
+  246  journalctl -u httpd
+  247  man semanage-port
+  248  semanage port -a -t http_port_t -p tcp 82
+  249  systemctl restart httpd
+  250  getsebool -a | grep ftp
+  251  setsebool -P ftpd_anon_write on
+  252  journalctl | grep sealert
+  253  sealert -l 5eed0aa8-5851-43aa-93b4-e0a893163751 | less
+  254  sealert -l 6652cbd5-c9e3-4bbb-9170-b724890746cd | less
+  255  history
+  256  cd
+  257  cd rhcsa9/lab
+  258  cd rhcsa9/labs
+  259  ls
+  260  grep Listen /etc/httpd/conf/httpd.conf 
+  261  mv /etc/hosts /web/
+  262  ls -Z /web
+  263  restorecon -Rv /web
+  264  cp /web/hosts /etc/
+  265  ls -Z /etc/hosts
+  266  ls -Zd /etc
+  267  cd /etc
+  268  ls -Z
+  269  firewall-cmd --get-services
+  270  cd /usr/lib/firewalld/services/
+  271  ls
+  272  vim kubelet.xml 
+  273  firewall-cmd --add-service kubelet
+  274  firewall-cnd --list-all
+  275  firewall-cmd --list-all
+  276  firewall-cmd --add-service kubelet --permanent
+  277  pwd
+  278  cp samba.xml /etc/firewalld/service/sander.xml
+  279  cp samba.xml /etc/firewalld/services/sander.xml
+  280  vim /etc/firewalld/services/sander.xml 
+  281  firewall-cmd --reload
+  282  firewall-cmd --get-services | grep sander
+  283  history
+  284  firewall-cmd --list-all
+  285  pwd
+  286  cat http.xml 
+  287  cp http.xml /etc/firewalld/services/
+  288  vim /etc/firewalld/services/http.xml 
+  289  firewall-cmd --add-service http --permanent
+  290  firewall-cmd --add-service http
+  291  timedatectl status
+  292  timedatectl set-timezone Africa/Lusaka
+  293  timedatectl status
+  294  vim /etc/chrony.conf 
+  295  systemctl restart chrony
+  296  systemctl restart chronyd
+  297  chronyc sources
+  298  systemctl list-unit-files -t timer
+  299  systemctl cat fstrim.timer
+  300  systemctl enable --now fstrim.timer
+  301  systemctl status fstrim.service
+  302  dnf install -y sysstat
+  303  systemctl list-unit-files sysstat*
+  304  systemctl cat sysstat-collect.timer 
+  305  man systemd-time
+  306  man systemd.time
+  307  man systemd.timer
+  308  systemctl status crond
+  309  crontab -e -u linda
+  310  ls /etc/cron*/
+  311  ls -l /tmp
+  312  cd
+  313  history > /tmp/09-oct-24.txt
