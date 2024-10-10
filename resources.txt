@@ -1,19 +1,26 @@
 ADDITIONAL RESOURCES 
+***	means: these are courses all should do!
+**	means: these are nice to deepen your skills and insight
+*	means: nice additional learning, but not really required for passing the RHCSA test
+
 
 LIVE COURSES
 *	Linux under the Hood: https://learning.oreilly.com/live-events/linux-under-the-hood-updated/0636920137849/
-***	Linux Certification Labs Workshop: https://learning.oreilly.com/live-events/linux-certification-labs-workshop/0636920096425/
-***	Linux Security from Basics to Guru: https://learning.oreilly.com/live-events/linux-security-from-basics-to-guru/0636920095339/
+*	Linux Security from Basics to Guru: https://learning.oreilly.com/live-events/linux-security-from-basics-to-guru/0636920095339/
 *	Mastering Systemd: https://learning.oreilly.com/live-events/mastering-systemd/0636920436324/
-***	Red Hat Certified Specialist in Containers (EX188) Crash Course: https://learning.oreilly.com/live-events/red-hat-certified-specialist-in-containers-ex188-crash-course/0636920090263/
 ***	Bash Shell Scripting in 4 Hours: https://learning.oreilly.com/live-events/bash-shell-scripting-in-4-hours/0636920245810/
-*	Using Red Hat Hybrid Cloud Console: https://learning.oreilly.com/live-events/using-red-hat-hybrid-cloud-console/0636920096431/
 *	Linux Performance Optimization: https://learning.oreilly.com/live-events/linux-performance-optimization/0636920155775/
-*	Linux Troubleshooting: https://learning.oreilly.com/live-events/linux-performance-optimization/0636920155775/
+***	Linux Troubleshooting: https://learning.oreilly.com/live-events/linux-performance-optimization/0636920155775/
 
 ON DEMAND COURSES
-*	Red Hat Certified Systems Administrator (RHCSA) RHEL 9: https://learning.oreilly.com/course/red-hat-certified/9780137931521/
-*	SELinux: https://learning.oreilly.com/course/mastering-security-enhanced-linux/9780138282691/
+***	Linux Fundamentals 2nd edition: https://learning.oreilly.com/course/linux-fundamentals-2nd/9780137929313/
+
+***	Red Hat Certified Systems Administrator (RHCSA) RHEL 9: https://learning.oreilly.com/course/red-hat-certified/9780137931521/
+***	RHCSA Exam Labs: https://learning.oreilly.com/course/rhcsa-exam-labs/9780135342374/
+**	Red Hat Certified Specialist in Containers: https://learning.oreilly.com/course/red-hat-certified/9780135335956/
+**	SELinux: https://learning.oreilly.com/course/mastering-security-enhanced-linux/9780138282691/
+**	Bash Scripting: https://learning.oreilly.com/course/bash-shell-scripting/9780137689064/
+*	Linux under the Hood: https://learning.oreilly.com/course/linux-under-the/9780138293321/
 
 BOOK
 *	Red Hat RHCSA 9 Cert Guide: https://learning.oreilly.com/library/view/red-hat-rhcsa/9780138096311/
