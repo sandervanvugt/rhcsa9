@@ -1,0 +1,405 @@
+    1  which dnf-3
+    2  rpm -qa | less
+    3  arch
+    4  man which
+    5  man whereis
+    6  whereis dnf
+    7  dnf repolist
+    8  df -h
+    9  dd if=/dev/sr0 of=/rhel9.iso bs=1M
+   10  lsblk
+   11  ls -l /dev
+   12  ls -l /dev/sr0
+   13  ls -l /rhel9.iso 
+   14  mkdir /repo
+   15  vim /etc/fstab
+   16  mount -a
+   17  ls /repo
+   18  ls /repo/BaseOS/
+   19  ls /repo/BaseOS/Packages/
+   20  ls /repo/AppStream/Packages/
+   21  mount
+   22  dnf repolist
+   23  history
+   24  ls /repo
+   25  dnf config-manager --add-repo="file:///repo/BaseOS"
+   26  dnf config-manager --add-repo="file:///repo/AppStream"
+   27  dnf repolist
+   28  dnf search nmap
+   29  dnf install nmap
+   30  cd /etc/yum.repos.d/
+   31  ls
+   32  vim repo_BaseOS.repo 
+   33  vim repo_AppStream.repo 
+   34  dnf install nmap
+   35  dnf install git
+   36  cd
+   37  git clone https://github.com/sandervanvugt/rhcsa9
+   38  ls rhcsa9
+   39  history
+   40  mount | grep repo
+   41  ls -l /repo
+   42  cat /etc/yum.repos.d/repo_BaseOS.repo 
+   43  dnf repolist
+   44  grep repo /etc/fstab
+   45  mount -a
+   46  ls -l /repo
+   47  ls -l /repo/BaseOS/
+   48  mount -a
+   49  mount | grep repo
+   50  ls /repo/BaseOS
+   51  cat /etc/yum.repos.d/repo_BaseOS.repo 
+   52  ls -l /dev/sr0
+   53  ls -l /dev/sr0/
+   54  dnf list selinux*
+   55  dnf search seinfo
+   56  dnf search all seinfo
+   57  seinfo
+   58  dnf provides */Containerfile
+   59  which dnf
+   60  which yum
+   61  dnf info setools-console
+   62  dnf groups list
+   63  dnf groups list hidden
+   64  cd rhcsa9/
+   65  ls
+   66  cd labs/
+   67  ls
+   68  ./live-lab1-grade.sh 
+   69  cd ..
+   70  history
+   71  rhcsa9/countdown 14
+   72  cd /etc
+   73  tar czvf /root/archive.tgz .
+   74  tar tvf /root/archive.tgz 
+   75  cd /
+   76  grep -d : -f 1 /etc/passwd
+   77  cut -d : -f 1 /etc/passwd
+   78  cut -d : -f 1 /etc/passwd | sort
+   79  cut -d : -f 1 /etc/passwd | sort >/var/tmp/users
+   80  tail -1 /etc/passwd
+   81  awk -F : '{print $1 }' /etc/passwd
+   82  awk -F : {'print $1 '} /etc/passwd
+   83  useradd bob
+   84  mkdir /root/userfiles
+   85  find / -user bob
+   86  find / -user bob -type d
+   87  find / -user bob -type f
+   88  find / -user bob -type f -exec cp {} /root/userfiles/ \;
+   89  ls -a /root/userfiles/
+   90  history
+   91  cd
+   92  visudo
+   93  exit
+   94  visudo
+   95  visudo 
+   96  passwd bob
+   97  su - bob
+   98  visudo 
+   99  lsblk
+  100  history -w
+  101  cd rhcsa9/
+  102  ./countdown 15
+  103  ./countdown 10
+  104  cd labs/
+  105  ls
+  106  ./live-lab1-grade.sh 
+  107  visudo
+  108  visudo 
+  109  passwd bob
+  110  su - bob
+  111  visudo 
+  112  lsblk
+  113  history -w
+  114  poweroff
+  115  df 0-h
+  116  df -h
+  117  lsblk
+  118  cat /proc/partitions 
+  119  lsblk
+  120  fdisk /dev/nvme0n2
+  121  mkfs.xfs /dev/nvme0n2p1
+  122  mount /dev/nvme0n2p1 /mnt
+  123  mount
+  124  touch /mnt/testfile
+  125  umount /mnt
+  126  ls -l /mnt
+  127  history
+  128  fdisk /dev/nvme0n2
+  129  mount /dev/nvme0n2p1 /mnt
+  130  mount
+  131  umount /mnt
+  132  fdisk /dev/nvme0n2
+  133  lsblk
+  134  mkfs.xfs /dev/nvme0n2p5
+  135  mkfs.ext4 /dev/nvme0n2p6
+  136  mkdir /xfs /ext4
+  137  vim /etc/fstab
+  138  mount -a
+  139  mount
+  140  touch /xfs/xfs-file
+  141  touch /ext4/ext4-file
+  142  vim /etc/default/grub 
+  143  grub2-mkconfig -o /boot/grub2/grub.cfg
+  144  reboot
+  145  lsblk
+  146  vim /etc/fstab
+  147  fdisk /dev/nvme0n2
+  148  reboot
+  149  lsblk
+  150  vim /etc/fstab
+  151  blkid
+  152  blkid | awk '/n2p5/ { print $2 }'
+  153  blkid | awk '/n2p5/ { print $2 }' >> /etc/fstab
+  154  vim /etc/fstab
+  155  mount -a
+  156  reboot
+  157  lsblk
+  158  mount | grep efi
+  159  lsof /boot
+  160  cd /boot
+  161  lsof /boot
+  162  cd
+  163  mount
+  164  mount | grep '^/'
+  165  lsblk
+  166  findmnt
+  167  cat /etc/fstab 
+  168  lsblk -fp
+  169  history
+  170  ip a
+  171  history > /tmp/nov2024history.txt
+  172  free -m
+  173  fdisk /dev/nvme0n1
+  174  mkswap /dev/nvme0n1p4
+  175  vim /etc/fstab
+  176  swapon -a
+  177  free -m
+  178  blkid
+  179  swapon --help
+  180  swapon -L myswap /dev/nvme0n1p4
+  181  tail -1 /etc/fstab
+  182  history
+  183  poweroff
+  184  fdisk /dev/nvme0n3
+  185  fdisk -l /dev/nvme0n3
+  186  mkfs.ext4 /dev/nvme0n3p1
+  187  mkfs.xfs -L myxfs /dev/nvme0n3p5
+  188  mkswap /dev/nvme0n3p6
+  189  mkdir -p /mounts/files /mounts/xfs
+  190  blkid
+  191  blkid | awk '/nvme0n3p1/ { print $2 }'
+  192  blkid | awk '/nvme0n3p1/ { print $2 }' >> /etc/fstab
+  193  vim /etc/fstab
+  194  blkid | awk '/nvme0n3p6/ { print $2 }' 
+  195  blkid | awk '/nvme0n3p6/ { print $2 }' >> /etc/fstab
+  196  vim /etc/fstab
+  197  mounts -a
+  198  mount -a
+  199  swapon -a
+  200  free -m
+  201  mount
+  202  reboot
+  203  free -m
+  204  lsblk
+  205  cd rhcsa9/labs/
+  206  ls
+  207  ./live-lab4-grade.sh 
+  208  ls
+  209  vim live-lab4-grade.sh 
+  210  ./live-lab4-grade.sh 
+  211  vim live-lab4-grade.sh 
+  212  ./live-lab4-grade.sh 
+  213  less /etc/passwd
+  214  man hier
+  215  ls -ld /
+  216  ls -l /
+  217  useradd --help | less
+  218  cd
+  219  vim /etc/login.defs
+  220  cd /etc/skel
+  221  ls -a
+  222  touch myfile
+  223  cd
+  224  useradd linda
+  225  ls -al /home/linda
+  226  passwd linda
+  227  echo password | passwd --stdin linda
+  228  grep linda /etc/shadow
+  229  usermod -L lida
+  230  usermod -L linda
+  231  grep linda /etc/shadow
+  232  usermod --help
+  233  id linda
+  234  usermod -e $(date -u +%Y-%m-%d --date "+9o days") linda
+  235  usermod -e $(date -u +%Y-%m-%d --date "+90 days") linda
+  236  date -u +%Y-%m-%d --date "+90 days"
+  237  id student
+  238  grep student /etc/passwd
+  239  grep student /etc/group
+  240  lid -g wheel
+  241  chage linda
+  242  chage --help
+  243  history
+  244  vim /etc/login.defs
+  245  ls /etc/skel/
+  246  touch /etc/skel/newfile
+  247  groupadd profs
+  248  groupadd students
+  249  useradd -G profs anna
+  250  useradd -G profs anouk
+  251  tail -5 /etc/passwd
+  252  usermod -aG students linda
+  253  usermod -aG students lisa
+  254  for i in linda lisa anna anouk; do echo password | passwd --stdin $i; done
+  255  rhcsa9/labs/live-lab2-grade.sh 
+  256  history
+  257  ls -l /etc/hosts
+  258  mkdir -p /data/profs /data/students
+  259  cd /data
+  260  ls -l
+  261  chgrp profs profs
+  262  chown :student students
+  263  ls -l
+  264  chmod 770 profs
+  265  chmod g+w,o-rx students/
+  266  ls -l
+  267  su - linda
+  268  grep student /etc/group
+  269  ls -ld /data/students/
+  270  chgrp students /data/students
+  271  su - linda
+  272  su - lisa
+  273  ls -l /usr/bin/passwd
+  274  ls -l /etc/shadow
+  275  su - anna
+  276  chmod g+s /data/profs
+  277  su - anna
+  278  su - anouk
+  279  chmod +t /data/profs
+  280  ls -ld /data/profs
+  281  chmod o+x /data/profs
+  282  ls -ld /data/profs
+  283  chmod o-x /data/profs
+  284  su - anouk
+  285  vim /etc/bashrdc
+  286  vim /etc/bashrc
+  287  touch /home/linda/rootfile1
+  288  touch /home/linda/rootfile2
+  289  su - linda
+  290  chattr +i /home/linda/rootfile2
+  291  rm -f /home/linda/rootfile2 
+  292  chattr -i /home/linda/rootfile2
+  293  ls -l
+  294  su - linda
+  295  man chattr
+  296  history
+  297  ps aux
+  298  sleep 3600 &
+  299  ps aux | grep 9053
+  300  kill 9053
+  301  ps aux | grep 9053
+  302  man 7 signals
+  303  man 7 signal
+  304  top
+  305  clear
+  306  cd
+  307  top
+  308  dd if=/dev/zero of=/dev/null &
+  309  top
+  310  echo 0 > /sys/bus/cpu/devices/cpu1/online 
+  311  top
+  312  nice -n -10 dd if=/dev/zero of=/dev/null &
+  313  top
+  314  killall dd
+  315  cd /proc/sys
+  316  ls
+  317  cd kernel/
+  318  ls
+  319  cd ../vm
+  320  ls
+  321  cd ../kernel/
+  322  kls
+  323  ls
+  324  cat pid_max 
+  325  echo $(( 256 * 256 ))
+  326  echo 65536 > pid_max
+  327  cat pid_max 
+  328  sysctl -a | grep pid_max
+  329  vim /etc/sysctl.conf 
+  330  sysctl -a | wc -l
+  331  cd
+  332  systemctl status tuned
+  333  systemctl start tuned
+  334  tuned-adm list
+  335  tuned-adm profile desktop
+  336  cd /usr/lib/tuned/desktop/
+  337  ls
+  338  vim tuned.conf 
+  339  cd ../balanced/
+  340  ls
+  341  vim tuned.conf 
+  342  cd 
+  343  vim /etc/tuned/tuned-main.conf 
+  344  man proc
+  345  ip a
+  346  nmtui
+  347  ip a
+  348  systemctl status NetworkManager
+  349  nmtui
+  350  exit
+  351  history
+  352  vim /etc/hosts
+  353  ping nfsserver
+  354  history
+  355  cd rhcsa9/
+  356  ls
+  357  vim resources.txt 
+  358  history
+  359  systemctl list-units 
+  360  systemctl cat sshd.service
+  361  systemctl get-default
+  362  systemctl -t help
+  363  cd
+  364  cd /etc/systemd/
+  365  ls
+  366  cd system
+  367  vim sander.service
+  368  systemctl cat sshd.service
+  369  vim sander.service
+  370  systemctl daemon-reload
+  371  systemctl status sander
+  372  systemctl start sander
+  373  systemctl status sander
+  374  systemctl enable sander
+  375  history
+  376  systemctl list-unit-files
+  377  systemctl list-units -t timer
+  378  dnf install -y httpd
+  379  systemctl cat httpd
+  380  systemctl cat sshd
+  381  systemctl edit httpd
+  382  systemctl cat httpd
+  383  systemctl enable --now httpd
+  384  systemctl status httpd
+  385  kill -9 10961
+  386  systemctl status httpd
+  387  systemctl show httpd.service
+  388  man systemd-directives
+  389  man -k systemd
+  390  man systemd.directives
+  391  man systemd.resource-control
+  392  systemctl disable --now httpd
+  393  systemctl mask httpd
+  394  systemctl start httpd
+  395  systemctl unmask httpd
+  396  journalctl
+  397  journalctl -p err
+  398  journalctl -f
+  399  journalctl -u sshd
+  400  vim /etc/systemd/journald.conf 
+  401  mkdir /var/log/journal
+  402  ls /var/log/journal/
+  403  systemctl restart systemd-journal-flush
+  404  ls /var/log/journal/
+  405  history > /tmp/nov2024.txt
