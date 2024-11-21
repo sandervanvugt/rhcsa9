@@ -348,58 +348,407 @@
   348  systemctl status NetworkManager
   349  nmtui
   350  exit
-  351  history
-  352  vim /etc/hosts
-  353  ping nfsserver
-  354  history
-  355  cd rhcsa9/
-  356  ls
-  357  vim resources.txt 
-  358  history
-  359  systemctl list-units 
-  360  systemctl cat sshd.service
-  361  systemctl get-default
-  362  systemctl -t help
-  363  cd
-  364  cd /etc/systemd/
-  365  ls
-  366  cd system
-  367  vim sander.service
+  351  cd rhcsa9/
+  352  ./countdown 6
+  353  cd rhcsa9/
+  354  ./countdown 16
+  355  ./countdown 14
+  356  ./countdown 12
+  357  vim lvlab.txt
+  358  ./countdown 16
+  359  history
+  360  vim /etc/hosts
+  361  ping nfsserver
+  362  history
+  363  cd rhcsa9/
+  364  ls
+  365  vim resources.txt 
+  366  history
+  367  systemctl list-units 
   368  systemctl cat sshd.service
-  369  vim sander.service
-  370  systemctl daemon-reload
-  371  systemctl status sander
-  372  systemctl start sander
-  373  systemctl status sander
-  374  systemctl enable sander
-  375  history
-  376  systemctl list-unit-files
-  377  systemctl list-units -t timer
-  378  dnf install -y httpd
-  379  systemctl cat httpd
-  380  systemctl cat sshd
-  381  systemctl edit httpd
-  382  systemctl cat httpd
-  383  systemctl enable --now httpd
-  384  systemctl status httpd
-  385  kill -9 10961
-  386  systemctl status httpd
-  387  systemctl show httpd.service
-  388  man systemd-directives
-  389  man -k systemd
-  390  man systemd.directives
-  391  man systemd.resource-control
-  392  systemctl disable --now httpd
-  393  systemctl mask httpd
-  394  systemctl start httpd
-  395  systemctl unmask httpd
-  396  journalctl
-  397  journalctl -p err
-  398  journalctl -f
-  399  journalctl -u sshd
-  400  vim /etc/systemd/journald.conf 
-  401  mkdir /var/log/journal
-  402  ls /var/log/journal/
-  403  systemctl restart systemd-journal-flush
-  404  ls /var/log/journal/
-  405  history > /tmp/nov2024.txt
+  369  systemctl get-default
+  370  systemctl -t help
+  371  cd
+  372  cd /etc/systemd/
+  373  ls
+  374  cd system
+  375  vim sander.service
+  376  systemctl cat sshd.service
+  377  vim sander.service
+  378  systemctl daemon-reload
+  379  systemctl status sander
+  380  systemctl start sander
+  381  systemctl status sander
+  382  systemctl enable sander
+  383  history
+  384  systemctl list-unit-files
+  385  systemctl list-units -t timer
+  386  dnf install -y httpd
+  387  systemctl cat httpd
+  388  systemctl cat sshd
+  389  systemctl edit httpd
+  390  systemctl cat httpd
+  391  systemctl enable --now httpd
+  392  systemctl status httpd
+  393  kill -9 10961
+  394  systemctl status httpd
+  395  systemctl show httpd.service
+  396  man systemd-directives
+  397  man -k systemd
+  398  man systemd.directives
+  399  man systemd.resource-control
+  400  systemctl disable --now httpd
+  401  systemctl mask httpd
+  402  systemctl start httpd
+  403  systemctl unmask httpd
+  404  journalctl
+  405  journalctl -p err
+  406  journalctl -f
+  407  journalctl -u sshd
+  408  vim /etc/systemd/journald.conf 
+  409  mkdir /var/log/journal
+  410  ls /var/log/journal/
+  411  systemctl restart systemd-journal-flush
+  412  ls /var/log/journal/
+  413  history > /tmp/nov2024.txt
+  414  ip a
+  415  pwd
+  416  cd
+  417  lsblk
+  418  fdisk /dev/nvme0n1
+  419  xxd /dev/nvme0n1p5 | less
+  420  pvcreate /dev/nvme0n1p5
+  421  xxd /dev/nvme0n1p5 | less
+  422  echo $(( 1024 * 1024 * 1024 ))
+  423  vgcreate vgdata /dev/nvme0n1p5
+  424  lvcreate -n lvdata -L 1G vgdata
+  425  vgdisplay vgdata | less
+  426  lvcreate -n lvdata -L 1020M vgdata
+  427  lvs
+  428  mkfs.ext4 /dev/vgdata/lvdata
+  429  mkdir /lvdata
+  430  vim /etc/fstab
+  431  mount -a
+  432  mount
+  433  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
+  434  history
+  435  tail -1 /etc/fstab
+  436  vgdisplay vgdata | less
+  437  fdisk /dev/nvme0n1
+  438  vgcreate vgfiles /dev/nvme0n1p6
+  439  lvcreate -l 255 -n lvfiles /dev/vgfiles
+  440  vgdisplay vgdata
+  441  mkfs.ext4 /dev/vgfiles/lvfiles 
+  442  df -h
+  443  vim /etc/fstab
+  444  mount -a
+  445  mkdir /lvfiles
+  446  mount -a
+  447  df -h
+  448  vgs
+  449  dd if=/dev/random of=/lvfiles/bigfile bs=1M
+  450  ls -l /lvfiles
+  451  df -h
+  452  vgs
+  453  vgextend vgfiles /dev/nvme0n1p7
+  454  vgs
+  455  lvextend -r -l +50%FREE /dev/vgfiles/lvfiles
+  456  df -h
+  457  lvs
+  458  vgs
+  459  history
+  460  vgs
+  461  fdisk /dev/nvme0n2
+  462  vgextend /dev/rhel /dev/nvme0n2p7
+  463  vgs
+  464  lvs
+  465  lvresize -r -l +100%FREE /dev/rhel/root
+  466  df -h
+  467  lvs
+  468  reboot
+  469  systemctl start graphical.target
+  470  vim /etc/default/grub 
+  471  grub2-mkconfig -o /boot/grub2/grub.cfg
+  472  systemctl list-units -t target
+  473  systemctl cat graphical.target
+  474  systemctl cat cryptsetup.target 
+  475  systemctl cat httpd.service
+  476  systemctl enable httpd.service
+  477  ls -l /etc/systemd/system/multi-user.target.wants/
+  478  systemctl list-dependencies
+  479  history
+  480  vim /etc/hosts
+  481  ping nfsserver
+  482  vim /etc/hosts
+  483  ping nfsserver
+  484  dnf install -y nfs-utils
+  485  showmount -e nfsserver
+  486  mount nfsserver:/nfsdata /mnt
+  487  mount
+  488  umount /mnt
+  489  dnf install -y autofs
+  490  vim /etc/auto.master
+  491  vim /etc/auto.misc
+  492  vim /etc/auto.data
+  493  vim /etc/auto.master
+  494  vim /etc/auto.data
+  495  systemctl enable --now autofs
+  496  cd /nfsfiles
+  497  ls -a
+  498  cd files
+  499  ls
+  500  touch itworl
+  501  exit
+  502  cd rhcsa9/
+  503  ./countdown 4
+  504  ./countdown 16
+  505  ./countdown 1
+  506  ./countdown 12
+  507  vim /etc/auto.master
+  508  vim /etc/auto.ldap
+  509  systemctl restart autofs
+  510  cd /home/ldap
+  511  ls -a
+  512  cd ldapuser1
+  513  pwd
+  514  cd ../ldapuser5
+  515  pwd
+  516  cd ..
+  517  ls
+  518  history
+  519  getenforce
+  520  vim /var/www/html/index.html
+  521  systemctl restart httpd
+  522  cd
+  523  firewall-cmd --add-service http --permanent
+  524  firewall-cmd --add-service http 
+  525  curl localhost
+  526  ps Zaux | grep http
+  527  ls -Z /var/www
+  528  mkdir /web
+  529  vim /web/index.html
+  530  vim /etc/httpd/conf/httpd.conf 
+  531  systemctl restart httpd
+  532  curl localhost
+  533  setenforce permissive
+  534  curl localhost
+  535  vim /etc/httpd/conf/httpd.conf 
+  536  find / -name "httpd.conf"
+  537  systemctl restart httpd
+  538  getenforce
+  539  vim /etc/httpd/conf/httpd.conf 
+  540  curl localhost
+  541  setenforce enforcing
+  542  curl localhost
+  543  ps Zaux | grep http
+  544  ls -Z /var/www
+  545  ls -ld /web
+  546  ls -ldZ /web
+  547  curl localhost
+  548  grep AVC /var/log/audit/audit.log 
+  549  man semanage-fcontext
+  550   # semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  551         # restorecon -R -v /web
+  552  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  553  curl localhost
+  554  history
+  555  cd /etc/selinux/targeted/contexts/files/
+  556  ls
+  557  cat file_contexts.local
+  558  cd
+  559  restorecon -Rv /web
+  560  curl localhost
+  561  semanage fcontext -l -C
+  562  dnf install selinux-policy-doc
+  563  man -k _selinux
+  564  man -k _selinux | grep http
+  565  man httpd_selinux
+  566  vim /etc/httpd/conf/httpd.conf 
+  567  systemctl restart httpd
+  568  systemctl status httpd
+  569  grep AVC /var/log/audit/audit.log 
+  570  semanage port -l
+  571  semanage port -l | grep 80
+  572  man semanage-port
+  573  semanage port -a -t http_port_t -p tcp 82
+  574  systemctl restart httpd
+  575  systemctl status httpd
+  576  history
+  577  getsebool -a
+  578  setsebool -P zabbix_run_sudo on
+  579  getsebool -a
+  580  journalctl | grep sealert
+  581  sealert -l 89b49574-6fb3-4498-a9f9-2645ab5d4bb5 | less
+  582  sealert -l 067cf25e-a4e9-4cb6-b606-ffc24d2b77fb | less
+  583  ls -Z /etc/hosts
+  584  cp /etc/hosts .
+  585  ls -Z /etc/hosts ./hosts
+  586  ls -lZ /etc/hosts ./hosts
+  587  rm /etc/hosts
+  588  mv hosts /etc/
+  589  ls -Z /etc/hosts
+  590  restorecon -v /etc/hosts
+  591  reboot
+  592  firewall-cmd --list-all
+  593  cat /usr/lib/firewalld/services/http.xml 
+  594  cp /usr/lib/firewalld/services/http.xml /etc/firewalld/services/sander.xml
+  595  vim /etc/firewalld/services/sander.xml
+  596  firewall-cmd --get-services
+  597  firewall-cmd --reload
+  598  firewall-cmd --get-services | grep sander
+  599  firwall-cmd --add-service sander
+  600  firewall-cmd --add-service sander
+  601  firewall-cmd --list-all
+  602  firewall-cmd --add-service sander --permanent
+  603  history > /tmp/nov2024.txt 
+  604  hwclock
+  605  date 
+  606  timedatectl show
+  607  chronyc sources
+  608  vim /etc/chrony.conf 
+  609  systemctl restart chronyd
+  610  systemctl list-unit-files
+  611  systemctl list-unit-files -t timer
+  612  systemctl list-unit-files logrotate*
+  613  systemctl status logrotate.service
+  614  systemctl cat logrotate.timer
+  615  ls /etc/cron*/*
+  616  dnf install -y sysstat
+  617  systemctl list-unit-files sysst*
+  618  systemctl cat sysstat-collect.timer 
+  619  systemctl cat sysstat.services
+  620  systemctl cat sysstat.service
+  621  sar -A
+  622  su - linda
+  623  journalctl 
+  624  sar -A
+  625  systemctl start sysstat.service 
+  626  systemctl list-unit-files sysstat*
+  627  systemctl cat sysstat-collect.service
+  628  /usr/lib64/sa/sa1 1 1
+  629  sar -A
+  630  sar --help | less
+  631  sar -S
+  632  vim /etc/containers/registries.conf
+  633  sudo dnf install container-tools
+  634  cd rhcsa9/
+  635  podman info
+  636  podman images
+  637  podman login registry.access.redhat.com
+  638  ls
+  639  vim Containerfile 
+  640  podman build -t mymap .
+  641  podman images
+  642  podman run localhost/mymap
+  643  podman run -d localhost/mymap
+  644  podman ps
+  645  podman ps -a
+  646  podman inspect localhost/mymap | less
+  647  podman inspect eager_blackwell | less
+  648  podman run ubi echo hello
+  649  podman run -d ubi sleep 30
+  650  podman ps
+  651  podman run ubi sleep 3600 -d
+  652  podman run -d ubi sleep 3600
+  653  history
+  654  podman search ubi
+  655  podman search ubi | less
+  656  podman run --name sleepy registry.access.redhat.com/ubi9-micro sleep 3600
+  657  podman images
+  658  podman run -d --name sleepy registry.access.redhat.com/ubi9-micro sleep 3600
+  659  podman rm sleepy
+  660  podman run -d --name sleepy registry.access.redhat.com/ubi9-micro sleep 3600
+  661  podman run docker.io/busybox
+  662  podman ps
+  663  podman ps -a
+  664  podman --name mydb registry.access.redhat.com/rhel9/mariadb-1011
+  665  podman run --name mydb registry.access.redhat.com/rhel9/mariadb-1011
+  666  podman search mariadb-1011
+  667  podman run --name mydb registry.redhat.io/rhel9/mariadb-1011
+  668  podman login registry.redhat.io
+  669  podman run --name mydb registry.redhat.io/rhel9/mariadb-1011
+  670  podman ps
+  671  podman ps -a
+  672  podman logs mydb
+  673  skopeo inspect registry.redhat.io/rhel9/mariadb-1011
+  674  skopeo inspect docker://registry.redhat.io/rhel9/mariadb-1011
+  675  podman rm mydb
+  676  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password registry.redhat.io/rhel9/mariadb-1011
+  677  podman rm mydb
+  678  exit
+  679  podman ps
+  680  podman stop sleepy
+  681  podman ps
+  682  podman stop mydb
+  683  history
+  684  exit
+  685  cd rhcsa9/
+  686  ./countdown 12
+  687  ./countdown 1
+  688  ./countdown 8
+  689  cd rhcsa9/
+  690  ./countdown 45
+  691  less mini-exam-45min.txt 
+  692  cd rhcsa9/
+  693  ls
+  694  ls labs/
+  695  less mini-exam-45min.txt 
+  696  dnf install -y httpd
+  697  vim /etc/httpd/conf/httpd.conf 
+  698  systemctl restart httpd
+  699  systemctl status httpd
+  700  semanage port -l | grep 81
+  701  vim /etc/httpd/conf/httpd.conf 
+  702  man semanage-port
+  703  semanage port -a -t http_port_t -p tcp 82
+  704  usermod -u 1100 -s /sbin/nologin lori
+  705  useradd -u 1100 -s /sbin/nologin lori
+  706  grep lori /etc/passwd
+  707  cd /etc
+  708  grep -l strator *
+  709  cd /
+  710  grep -R strator /etc/
+  711  grep -Rl strator /etc/
+  712  grep -Rl strator /etc/ > /tmp/stratorfiles.txt
+  713  cat /tmp/stratorfiles.txt 
+  714  ln -s /etc/hosts /tmp/hosts
+  715  ls -l /tmp/hosts
+  716  groupadd sales
+  717  mkdir /data/sales
+  718  chgrp sales /data/sales
+  719  chmod 2770 /data/sales
+  720  ls -ld /data/sales
+  721  touch /data/sales/root
+  722  ls -l /data/sales/root 
+  723  vgs
+  724  lvcreate -n lvlab -l 50 vgfiles
+  725  lvs
+  726  mkdir /lvlab
+  727  mkfs.xfs /dev/vgfiles/lvlab 
+  728  mount
+  729  man mount
+  730  vim /etc/fstab
+  731  mount -a
+  732  cd
+  733  cd /run/systemd/generator/
+  734  ls
+  735  systemctl daemon-reload
+  736  ls
+  737  cd ../generator/
+  738  ls
+  739  cat lvlab.mount
+  740  cp lvlab.mount /etc/systemd/system/
+  741  systemctl daemon-reload
+  742  cd
+  743  systemctl enable lvlab.mount
+  744  systemctl cat httpd.service
+  745  vim /etc/systemd/system/lvlab.mount 
+  746  systemctl enable lvlab.mount
+  747  vim /etc/fstab
+  748  tuned-adm recommend
+  749  tuned-adm profile virtual-guest
+  750  reboot
+  751  lsblk
+  752  tuned-adm profiles
+  753  tuned-adm profile
+  754  history > /tmp/nov2024.txt 
