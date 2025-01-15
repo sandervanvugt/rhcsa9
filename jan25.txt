@@ -322,5 +322,218 @@
   322  ls journal/
   323  vim /etc/systemd/journald.conf 
   324  reboot
-  325  ssh student@localhost
-  326  history > /tmp/jan25.txt
+  325  system
+  326  systemctl list-units
+  327  touch hhh
+  328  mount -o remount,rw /
+  329  reboto
+  330  reboot
+  331  systemctl list-units -t target
+  332  systemctl get-default
+  333  systemctl isolate multi-user.target
+  334  lspci -k
+  335  systemctl start graphical.target
+  336  systemctl cat printer.target 
+  337  systemctl cat multi-user.target
+  338  systemctl cat httpd.service 
+  339  systemctl enable httpd
+  340  systemctl cat httpd
+  341  systemctl cat multi-user.target 
+  342  ls -l /etc/systemd/system/multi-user.target.wants/
+  343  fdisk /dev/nvme0n1
+  344  pvcreate /dev/nvme0n1p5
+  345  xxd /dev/nvme0n1p5 | less
+  346  vgcreate vgdata /dev/nvme0n1p5
+  347  vgs
+  348  lvcreate -n lvdata -L 1G vgdata
+  349  lvcreate -n lvdata -L 1020M vgdata
+  350  mkfs /dev/vgdata/lvdata
+  351  vim /etc/fstab
+  352  mount /dev/vgdata/lvdata /mnt
+  353  mount | grep lvdata
+  354  vim /etc/fstab
+  355  mkdir /lvdata
+  356  vim /etc/fstab
+  357  mount -a
+  358  mount
+  359  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata 
+  360  tail -1 /etc/fstab
+  361  history
+  362  tail -1 /etc/fstab
+  363  vgs
+  364  lvs
+  365  df -h
+  366  dd if=/dev/urandom of=/mnt/brf bs=1M
+  367  df -h
+  368  lvresize -r -L +100M /dev/vgdata/lvdata
+  369  vgs
+  370  fdisk -l /dev/nvme0n1
+  371  pvs
+  372  vgextend vgdata /dev/nvme0n1p6
+  373  vgs
+  374  vgdisplay vgdata
+  375  lvextend -r -l +50%FREE /dev/vgdata/lvdata
+  376  df -h
+  377  history
+  378  fdisk -l /dev/nvme0n1
+  379  echo $(( 1024 * 5 ))
+  380  fdisk /dev/nvme0n1
+  381  vgcreate vgdb /dev/nvme0n1p7
+  382  vgs
+  383  lvcreate -L 1020M -n lvdb vgdb
+  384  mkdir -p /mounts/lvdb
+  385  vim /etc/fstab
+  386  mkfs.xfs /dev/vgdb/lvdb
+  387  mount -a
+  388  vim /etc/fstab
+  389  vgs
+  390  vgextend rhel /dev/nvme0n1p8
+  391  vgs
+  392  lvresize -r -L +5056M /dev/rhel/root
+  393  df -h
+  394  getenforce
+  395  vim /etc/httpd/conf/httpd.conf 
+  396  mkdir /web
+  397  echo hello folks > /web/index.html
+  398  systemctl restart httpd
+  399  curl localhost
+  400  setenforce permissive
+  401  curl localhost
+  402  vim /etc/httpd/conf/httpd.conf 
+  403  systemctl restart httpd
+  404  curl localhost
+  405  getenforcer
+  406  getenforce
+  407  setenforce enforcing
+  408  curl localhost
+  409  reboot
+  410  ls -Z 
+  411  getenforce
+  412  ps Zaux | grep http
+  413  ls -Zl /var/www
+  414  ls -dZ /web
+  415  ls -Zd /var/tmp
+  416  grep AVC /var/log/audit/audit.log 
+  417  man semanage-fcontext
+  418  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  419  curl localhost
+  420  ls -lZd /web
+  421  restorecon -Rv /web
+  422  curl localhost
+  423  history
+  424  semanage fcontext -l -C
+  425  dnf install selinux-policy-doc
+  426  man -k _selinux
+  427  man -k _selinux | grep http
+  428  man httpd_selinux
+  429  man semanage-fcontext
+  430  man semanage-port
+  431  getsebool -a
+  432  getsebool -a | wc -l
+  433  getsebool -a | grep ftp
+  434  setsebool -P ftpd_anon_write on
+  435  getsebool -a | grep ftp
+  436  grep AVC /var/log/audit/audit.log 
+  437  journalctl | grep sealert
+  438  sealert -l c4a0b330-6608-43a6-a458-c79a2fe29658 | less
+  439  vim /etc/httpd/conf/httpd.conf 
+  440  systemctl restart httpd
+  441  systemctl status httpd
+  442  journalctl -xeu httpd.service
+  443  setenforce permissive
+  444  systemctl restart httpd
+  445  systemctl status httpd
+  446  setenforce enforcing
+  447  grep AVC /var/log/audit/audit.log 
+  448  journalctl | grep sealert
+  449  sealert -l c68351ec-f6b7-45a1-b872-4814a7466828 | less
+  450  man semanage-port
+  451  semanage port -a -t http_port_t -p tcp 82
+  452  systemctl restart httpd
+  453  curl localhost:82
+  454  history
+  455  grep Listen /etc/httpd/conf/httpd.conf 
+  456  curl localhost:82
+  457  mv /etc/hosts /var/www/html/
+  458  ls -Z /var/www/html
+  459  mv /var/www/html/hosts /web/hosts
+  460  ls -lZ /web/hosts
+  461  curl localhost/hosts:82
+  462  curl localhost:82/hosts
+  463  grep AVC /var/log/audit/audit.log 
+  464  systemctl restart httpd
+  465  grep AVC /var/log/audit/audit.log 
+  466  getenforce
+  467  semanage port -l -C
+  468  ls -lZ /web
+  469  restorecon -Rv /web
+  470  systemctl status httpd
+  471  curl localhost:82
+  472  curl localhost:82/web
+  473  curl localhost/web:82
+  474  curl localhost/hosts:82
+  475  curl localhost:82/hosts
+  476  cp /web/hosts /etc/
+  477  ls -lZ /etc/hosts
+  478  ls -dZ /etc
+  479  history
+  480  firewall-cmd --list-all
+  481  systemctl status firewalld
+  482  firewall-cmd --list-all
+  483  firewall-cmd --get-services
+  484  vim /usr/lib/firewalld/services/http.xml 
+  485  cp /usr/lib/firewalld/services/http.xml /etc/firewalld/services/sander.xml
+  486  vim /etc/firewalld/services/sander.xml 
+  487  firewall-cmd --reload
+  488  firewall-cmd --get-services | grep sander
+  489  firewall-cmd --add-service sander
+  490  firewall-cmd --list-all
+  491  firewall-cmd --add-service sander --permanent
+  492  ssh sander@192.168.29.208
+  493  ssh student@192.168.29.208
+  494  vim /etc/hosts
+  495  dnf install -y nfs-utils
+  496  showmount -e nfsserver
+  497  mount nfsserver:/nfsdata /mnt
+  498  mount
+  499  umount /mnt
+  500  dnf install -y autofs
+  501  ls /
+  502  vim /etc/auto.master
+  503  vim /etc/auto.misc
+  504  vim /etc/auto.master
+  505  vim /etc/auto.files
+  506  systemctl enable --now autofs
+  507  ls /
+  508  cd /files
+  509  ls -a
+  510  cd data
+  511  pwd
+  512  mount
+  513  cd files
+  514  pwd
+  515  cp /etc/hosts .
+  516  history
+  517  grep files /etc/auto.master
+  518  cat /etc/auto.files
+  519  vim /etc/auto.master
+  520  vim /etc/auto.ldap
+  521  systemctl restart autofs
+  522  cd /home
+  523  kls
+  524  ls
+  525  cd ldap
+  526  ls -a
+  527  cd ldapuser1
+  528  cd ../ldapuser2
+  529  history
+  530  grep ldap /etc/auto.master
+  531  cat /etc/auto.ldap
+  532  date
+  533  hwclock
+  534  systemctl status chronyd
+  535  vim /etc/chrony.conf 
+  536  systemctl restart chronyd
+  537  chronyc sources
+  538  cd
+  539  history > /tmp/jan25.txt 
