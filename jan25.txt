@@ -537,3 +537,224 @@
   537  chronyc sources
   538  cd
   539  history > /tmp/jan25.txt 
+  540  systemctl cat sleep.service
+  541  cat /etc/fstab
+  542  nmtui
+  543  poweroff
+  544  systemctl list-unit-files -t timer
+  545  systemctl list-unit-files fstrim*
+  546  systemctl cat fstrim.service
+  547  systemctl cat fstrim.timer
+  548  systemctl enable --now fstrim.timer
+  549  systemctl status fstrim.timer
+  550  systemctl status fstrim.service
+  551  ls /etc/cron*/*
+  552  ls -d /etc/cron*/
+  553  dnf install sysstat
+  554  sar -a
+  555  sar -A
+  556  systemctl list-unit-files sysstat*
+  557  systemctl cat sysstat-collect.timer 
+  558  systemctl cat sysstat-summary.timer 
+  559  sar -A
+  560  systemctl status crond
+  561  vim /etc/crontab 
+  562  crontab -u linda -e
+  563  date
+  564  sar -A
+  565  date
+  566  journalctl
+  567  crontab -u linda -e 
+  568  sar -A
+  569  reboot
+  570  vim /etc/containers/registries.conf
+  571  history
+  572  exit
+  573  cd rhcsa9/
+  574  ls
+  575  less mini-exam-45min.txt 
+  576  cd labs
+  577  ls
+  578  less ../mini-exam-45min.txt 
+  579  exit
+  580  dnf install -y httpd
+  581  grep Listen /etc/httpd/conf/httpd.conf 
+  582  man semanage-port
+  583  semanage port -l -C
+  584  useradd lori -u 1100 -s /sbin/nologin
+  585  grep lori /etc/passwd
+  586  grep -Rl 'strator' /etc/
+  587  grep -Rl 'strator' /etc/ > /tmp/stratorfiles.txt
+  588  ln -s /etc/hosts /tmp/hosts
+  589  ls -l /tmp/hosts
+  590  groupadd sales
+  591  mkdir /data/sales
+  592  chmod g+w /data/sales
+  593  chgrp sales /data/sales
+  594  chmod g+s /data/sales
+  595  ls -ld /data/sales
+  596  touch /data/sales/hello
+  597  ls -l /data/sales/hello
+  598  vgs
+  599  lvcreate -l 50 -n lvlab vgdata
+  600  mkdir /lvlab
+  601  mkfs.xfs /dev/vgdata/lvlab
+  602  man mount
+  603  vim /etc/fstab
+  604  systemctl daemon-reload
+  605  mount
+  606  mount a-
+  607  mount -a
+  608  mount
+  609  cd /lvlab/
+  610  vim runme
+  611  chmod +x runme 
+  612  ./runme
+  613  ls /run/systemd/generator/
+  614  cp /run/systemd/generator/lvlab.mount /etc/systemd/system/
+  615  vim /etc/systemd/system/lvlab.mount 
+  616  systemctl daemon-reload
+  617  systemctl enable lvlab.mount
+  618  vim /etc/fstab
+  619  tuned-adm recommend
+  620  tuned-adm profile virtual-guest 
+  621  tuned-adm list
+  622  exit
+  623  cd rhcsa9/labs/
+  624  ls
+  625  ./live-mini-exam-grade.sh 
+  626  history > /tmp/jan25.txt 
+    1  cd rhcsa9
+    2  sudo -i
+    3  countdown 1
+    4  sudo -i
+    5  countdown 12
+    6  sudo -i
+    7  countdown 1
+    8  countdown 15
+    9  countdown 1
+   10  countdown 12
+   11  su -
+   12  exit
+   13  sudo -i
+   14  countdown 5
+   15  countdown 1
+   16  countdown 16
+   17  sudo -i
+   18  countdown 12
+   19  countdown 8
+   20  countdown 12
+   21  sudo -i
+   22  podman ps
+   23  podman stop 86a2
+   24  countdown 12
+   25  podman login registry.redhat.io
+   26  sudo vim /etc/containers/registries.conf
+   27  podman run nginx
+   28  podman run -d nginx
+   29  podman images
+   30  podman ps
+   31  podman inspect modest_benz | less
+   32  podman run docker.io/library/busybox
+   33  podman ps
+   34  podman ps -a
+   35  podman run -it docker.io/library/nginx sh
+   36  history
+   37  sudo dnf install container-tools
+   38  git clone https://github.com/sandervanvugt/rhcsa9
+   39  cd rhcsa9
+   40  podman info
+   41  podman images
+   42  podman login registry.access.redhat.com
+   43  ls
+   44  vim Containerfile 
+   45  podman build -t sleepo .
+   46  podman images
+   47  podman run localhost/sleepo
+   48  podman ps
+   49  podman ps -a
+   50  ls
+   51  ps aux | grep ls
+   52  podman run --name mydb registry.access.redhat.com/rhel9/mariadb-1011
+   53  history | grep login
+   54  podman search mariadb
+   55  podman run --name mydb registry.redhat.io/rhel9/mariadb-1011
+   56  podman ps
+   57  podman ps -a
+   58  podman logs mydb
+   59  skopeo inspect docker://registry.redhat.io/rhel9/mariadb-1011
+   60  podman rm mydb
+   61  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password registry.redhat.io/rhel9/mariadb-1011
+   62  podman rm mydb
+   63  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password -d registry.redhat.io/rhel9/mariadb-1011
+   64  history
+   65  podman run -d -p 8080:80 docker.io/library/nginx
+   66  podman port -a
+   67  podman ps 
+   68  curl localhost:8080
+   69  sudo firewall-cmd --add-port=8080/tcp --permanent
+   70  sudo firewall-cmd --reload
+   71  sudo firewall-cmd --list-all
+   72  sudo semanage port -l | grep 8080
+   73  history
+   74  podman images
+   75  podman inspect 0424 | less
+   76  cd
+   77  mkdir demodir
+   78  ls -ld demodir
+   79  podman unshare ls -ld demodir
+   80  podman unshare chown 27 demodir
+   81  ls -ld demodir/
+   82  podman unshare ls -ld demodir
+   83  history
+   84  podman login registry.access.redhat.com
+   85  mkdir mydb
+   86  #podman run -d --name mydb
+   87  podman ps
+   88  podman stop mydbv
+   89  podman stop mydb
+   90  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql registry.redhat.io/rhel9/mariadb-1011
+   91  podman rm mydb
+   92  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql registry.redhat.io/rhel9/mariadb-1011
+   93  podman ps
+   94  podman ps -a
+   95  podman logs mydb
+   96  podman rm mydb
+   97  podman unshare chown 27 mydb
+   98  ls -ld mydb
+   99  podman unshare ls -ld mydb
+  100  ls -ldZ mydb
+  101  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql:Z registry.redhat.io/rhel9/mariadb-1011
+  102  podman ps
+  103  ls -Z mydb
+  104  history
+  105  cat /etc/os-release 
+  106  sudo loginctl enable-linger linda
+  107  ssh linda@localhost
+  108  sudo reboot
+  109  echo #####USER STUDENT >> /tmp/jan25.txt 
+  110  history >> /tmp/jan25.txt
+USER LINDA
+    1  sudo passwd lisa
+    2  sudo passwd root
+    3  exit
+    4  cat hellofile 
+    5  exit
+    6  ls -ld .
+    7  ls -l
+    8  rm -f rootfile 
+    9  exit
+   10  rm -f /data/students/*
+   11  ls -ld /data/students
+   12  exit
+   13  mkdir -p .config/systemd/user
+   14  cd .config/systemd/user/
+   15  podman run -d --name mynginx -p 8081:80 docker.io/library/nginx
+   16  podman ps
+   17  podman generate systemd --name mynginx --files --new
+   18  vim container-mynginx.service 
+   19  systemctl --user daemon-reload
+   20  systemctl --user enable container-mynginx.service 
+   21  exit
+   22  echo USER LINDA >> /tmp/jan25.txt 
+   23  history >> /tmp/jan25.txt 
