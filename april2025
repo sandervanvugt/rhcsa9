@@ -1,0 +1,228 @@
+    1  id
+    2  touch dumbfile
+    3  ls -l dumbfile 
+    4  exit
+    5  ls -l $(which dnf) $(which yum)
+    6  df -h
+    7  lsblk
+    8  dd if=/dev/sr0 of=/rhel9.iso bs=1M
+    9  mkdir /repo
+   10  vim /etc/fstab
+   11  mount -a
+   12  ls /repo
+   13  cd /repo
+   14  ls
+   15  cd BaseOS/
+   16  ls
+   17  cd Packages/
+   18  ls
+   19  cd ../../AppStream/
+   20  ls Packages/
+   21  cd /
+   22  history
+   23  dnf repolist
+   24  dnf install -y nmap
+   25  dnf config-manager --add-repo="file:///repo/AppStream"
+   26  cat >> /etc/yum.repos.d/BaseOS.repo <<EOF
+   27  [BaseOS]
+   28  name=BaseOS
+   29  baseurl=file:///repo/BaseOS
+   30  gpgcheck=0
+   31  EOF
+   32  ls /repo/
+   33  cd /etc/yum.repos.d/
+   34  ls
+   35  dnf repolist
+   36  dnf install -y nmap
+   37  ls
+   38  cat BaseOS.repo 
+   39  cat repo_AppStream.repo 
+   40  vim repo_AppStream.repo 
+   41  dnf install -y nmap
+   42  history
+   43  dnf list selinux*
+   44  dnf search semodule
+   45  dnf search all semodule
+   46  dnf provides */semodule
+   47  history
+   48  semodule
+   49  seinfo
+   50  dnf info seinfo
+   51  dnf info setools-console
+   52  history
+   53  history | less
+   54  cd
+   55  git clone https://github.com/sandervanvugt/rhcsa9
+   56  dnf install git-core
+   57  dnf install git
+   58  git clone https://github.com/sandervanvugt/rhcsa9
+   59  cd rhcsa9/
+   60  ls
+   61  ./countdown 16
+   62  cat /etc/fstab
+   63  history
+   64  cd /
+   65  ls -l rhel9.iso 
+   66  cd /binb
+   67  cd /usr/bin
+   68  ls
+   69  rpm -qf /usr/sbin/ionice
+   70  rpm -qf /usr/bin/ionice
+   71  rpm -qc util-linux-core
+   72  cd ../sbin
+   73  ls
+   74  rpm -qf ./lpadmin 
+   75  rpm -qc cups
+   76  history
+   77  history | less
+   78  cd
+   79  tar cvzf /root/archive.tgz /etc
+   80  ls -l
+   81  tar tvf archive.tgz 
+   82  cd /etc
+   83  tar cvzf /root/archive.tgz .
+   84  tar tvf /root/archive.tgz 
+   85  cd
+   86  history
+   87  cat /etc/passwd
+   88  cut --help
+   89  cut -d : -f 1 /etc/passwd
+   90  cut -d : -f 1 /etc/passwd | sort
+   91  cut -d : -f 1 /etc/passwd | sort
+   92  cut -d : -f 1 /etc/passwd | sort > /var/tmp/users
+   93  less /var/tmp/users 
+   94  useradd bob
+   95  find / -user "bob"
+   96  find / -user "bob" -type f
+   97  find / -user "bob" -type f 2>/dev/null
+   98  mkdir /root/userfiles
+   99  find / -user "bob" -type f -exec cp {} /root/userfiles/ \;
+  100  history | grep git
+  101  cd rhcsa9/
+  102  cd labs/
+  103  ls
+  104  ./live-lab1-grade.sh 
+  105  history
+  106  cd ..
+  107  ls
+  108  cat resources.txt 
+  109  visudo
+  110  useradd linda
+  111  passwd linda
+  112  su - linda
+  113  id student
+  114  visudo
+  115  su - linda
+  116  visudo
+  117  history
+  118  dnf repolist
+  119  cat /etc/yum.repos.d/repo_AppStream.repo 
+  120  cat /etc/passwd
+  121  vim /etc/login.defs 
+  122  cd /etc/skel/
+  123  ls
+  124  ls -a
+  125  touch myfile
+  126  ls
+  127  useradd anna
+  128  passwd anna
+  129  grep anna /etc/passwd
+  130  ls -a /home/anna
+  131  grep anna /etc/shadow
+  132  grep linda /etc/shadow
+  133  cd
+  134  usermod --help
+  135  passwd --help
+  136  cat /etc/passwd
+  137  useradd -s /usr/bin/passwd alex
+  138  passwd alex
+  139  su - alex
+  140  tail tail
+  141  tail
+  142  reset
+  143  tail -5 /etc/passwd 
+  144  tail -5 /etc/group
+  145  su - student
+  146  grep wheel /etc/group
+  147  id student
+  148  groupadd dummy
+  149  usermod -aG dummy root
+  150  id
+  151  newgrp dummy
+  152  chage linda
+  153  history
+  154  vim /etc/login.defs 
+  155  touch /etc/skel/newfile
+  156  for i in anna anouk linda lisa; do useradd $i; done
+  157  for i in anna anouk linda lisa; do echo password | passwd --stdin $i; done
+  158  groupadd profs
+  159  groupadd students
+  160  usermod -aG profs anna
+  161  usermod -aG profs anouk
+  162  usermod -aG students linda
+  163  usermod -aG students lisa
+  164  id lisa
+  165  id anna
+  166  rhcsa9/labs/live-lab2-grade.sh 
+  167  ls -l
+  168  echo hello > /home/anna/hellofile
+  169  ls -l /home/anna/hellofile 
+  170  chown anna /home/anna/hellofile 
+  171  chmod u-rw /home/anna/hellofile 
+  172  su - anna
+  173  history
+  174  mkdir -p /data/profs /data/students
+  175  chown :profs /data/profs
+  176  chgrp students /data/students
+  177  ls -l data
+  178  ls -l /data
+  179  chmod 770 /data/students
+  180  ls -l /data
+  181  chmod 770 /data/*
+  182  ls -l /data
+  183  chmod g+w,o-rx /data/profs
+  184  su - anna
+  185  chmod g+s /data/profs
+  186  ls -ld /data/profs/
+  187  chmod g-x /data/profs
+  188  ls -ld /data/profs/
+  189  chmod g+x /data/profs
+  190  su - anna
+  191  su - anouk
+  192  chmod +t /data/profs
+  193  su - anouk
+  194  umask
+  195  touch /home/anna/rootfile
+  196  touch /home/anna/rootfile2
+  197  su - anna
+  198  histsoy
+  199  history
+  200  find / -group profs
+  201  mkdir -p /data/profs /data/students
+  202  chgrp profs /data/profs
+  203  chgrp students /data/students
+  204  chmod 770 /data/*
+  205  ls -l /data/*
+  206  ls -l /data/
+  207  umask
+  208  ls /etc/bashrc*
+  209  vim /etc/bashrc 
+  210  cd /etc/profile.d/
+  211  ls
+  212  vim umask.local
+  213  eixt
+  214  exit
+  215  umask
+  216  ls -l .bas*
+  217  vim .bashrc 
+  218  cd /etc/profile.d/
+  219  mv umask.local umask.sh
+  220  exit
+  221  umask
+  222  vim /etc/login.defs 
+  223  su - anna
+  224  vim /etc/login.defs 
+  225  su - anna
+  226  history
+  227  ip a
+  228  history > /tmp/april2025
