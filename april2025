@@ -218,11 +218,239 @@
   218  cd /etc/profile.d/
   219  mv umask.local umask.sh
   220  exit
-  221  umask
-  222  vim /etc/login.defs 
-  223  su - anna
-  224  vim /etc/login.defs 
-  225  su - anna
-  226  history
-  227  ip a
-  228  history > /tmp/april2025
+  221  cd rhcsa9/
+  222  ./countdown 1
+  223  ./countdown 16
+  224  ./countdown 1
+  225  ./countdown 12
+  226  ./countdown 8
+  227  ./countdown 13
+  228  ./countdown 8
+  229  umask
+  230  vim /etc/login.defs 
+  231  su - anna
+  232  vim /etc/login.defs 
+  233  su - anna
+  234  history
+  235  ip a
+  236  history > /tmp/april2025
+  237  lsblk
+  238  poweroff
+  239  cd rhcsa9/
+  240  ./countdown 6
+  241  cd rhcsa9/
+  242  ./countdown 12
+  243  lsblk
+  244  history
+  245  history | grep dd
+  246  man dd
+  247  lsblk
+  248  fdisk -l /dev/nmve0n1
+  249  fdisk -l /dev/nvme0n1
+  250  fdisk /dev/nvme0n1
+  251  lsblk
+  252  mount /dev/nvme0n1p4 /mnt
+  253  cd /mnt
+  254  umount /mnt
+  255  lsof /mnt
+  256  findmnt
+  257  lsblk
+  258  history
+  259  man fstab
+  260  fdisk /dev/nvme0n2
+  261  lsblk
+  262  mkfs.ext4 /dev/nvme0n2p5
+  263  mkfs.xfs /dev/nvme0n2p6
+  264  mkdir /xfs /ext4
+  265  vim /etc/fstab
+  266  mount -a
+  267  lsblk
+  268  reboot
+  269  lsblk
+  270  vim /etc/fstab
+  271  fdisk /dev/nvme0n2
+  272  reboot
+  273  touch aa
+  274  cat /etc/fstab
+  275  lsblk
+  276  blkid
+  277  blkid | awk '/n2p5/ { print $2 }'
+  278  blkid | awk '/n2p5/ { print $2 }' >> /etc/fstab
+  279  vim /etc/fstab
+  280  history -w
+  281  touch aa
+  282  cat /etc/fstab
+  283  lsblk
+  284  blkid
+  285  blkid | awk '/n2p5/ { print $2 }'
+  286  blkid | awk '/n2p5/ { print $2 }' >> /etc/fstab
+  287  vim /etc/fstab
+  288  history -w
+  289  reboot
+  290  lsblk
+  291  tail -1 /etc/fstab
+  292  ls -l /dev/disk
+  293  ls -l /dev/disk/by-uuid/
+  294  ls -l /dev/disk/by-partuuid/
+  295  free -m
+  296  fdisk /dev/nvme0n2
+  297  free -m
+  298  mkswap /dev/nvme0n2p6
+  299  blkid | awk '/n2p6/ { print $2 }' >> /etc/fstab
+  300  vim /etc/fstab
+  301  swapon -a
+  302  free -m
+  303  history
+  304  lsblk
+  305  history -w
+  306  lsblk
+  307  tail -1 /etc/fstab
+  308  ls -l /dev/disk
+  309  ls -l /dev/disk/by-uuid/
+  310  ls -l /dev/disk/by-partuuid/
+  311  free -m
+  312  fdisk /dev/nvme0n2
+  313  free -m
+  314  mkswap /dev/nvme0n2p6
+  315  blkid | awk '/n2p6/ { print $2 }' >> /etc/fstab
+  316  vim /etc/fstab
+  317  swapon -a
+  318  free -m
+  319  history
+  320  lsblk
+  321  history -w
+  322  poweroff
+  323  lsblk
+  324  ls -a
+  325  vim .bash_logout 
+  326  fdisk /dev/nvme0n3
+  327  mkfs.ext4 /dev/nvme0n3p1
+  328  mkdir -p /mounts/files
+  329  mkfs.xfs /dev/nvme0n3p5 -L myxfs
+  330  blkid
+  331  mkdir /mounts/xfs
+  332  mkswap /dev/nvme0n3p6
+  333  blkid
+  334  blkid | awk '/n3p1/ { print $2 }' >> /etc/fstab
+  335  blkid | awk '/n3p6/ { print $2 }' >> /etc/fstab
+  336  vim /etc/fstab
+  337  mount -a
+  338  history
+  339  free -m
+  340  swapon -a
+  341  free -m
+  342  lsblk
+  343  history
+  344  cat .bash_logout 
+  345  dd if=/dev/zero of=/dev/null
+  346  dd if=/dev/zero of=/dev/null &
+  347  top
+  348  killall dd
+  349  top
+  350  dd if=/dev/zero of=/dev/null &
+  351  nice -n -19 dd if=/dev/zero of=/dev/null &
+  352  top
+  353  ls -l /sys/bus/cpu/devices/cpu1/online 
+  354  cat /sys/bus/cpu/devices/cpu1/online 
+  355  echo 0 > /sys/bus/cpu/devices/cpu1/online 
+  356  top
+  357  tuned-adm list
+  358  tuned-adm --help
+  359  tuned-adm profile aws
+  360  tuned-adm list
+  361  tuned-adm profile powersave
+  362  dnf install -y tuned
+  363  systemctl enable --now tuned
+  364  systctl -a
+  365  sysctl -a
+  366  sysctl -a | wc -l
+  367  sysctl -a | grep swappi
+  368  echo vm.swappiness = 33 > /etc/sysctl.d/swappiness.conf
+  369  sysctl -p /etc/sysctl.d/swappiness.conf 
+  370  sysctl -a | grep swappi
+  371  mkdir /etc/tuned/myprofile
+  372  cat >> /etc/tuned/myprofile/tuned.conf <<EOF
+[sysctl]
+vm.swappiness = 66
+EOF
+
+  373  tuned-adm list
+  374  tuned-adm profile myprofile 
+  375  sysctl -a | grep swappi
+  376  vim /etc/tuned/tuned-main.conf 
+  377  history
+  378  su - linda
+  379  ip a
+  380  systemctl status NetworkManager
+  381  nmtui
+  382  ip a
+  383  systemctl -t help
+  384  systemctl list-units
+  385  systemctl list-units -t service
+  386  systemctl cat sshd.service
+  387  vim /etc/systemd/system/sleep.service
+  388  systemctl daemon-reload 
+  389  systemctl status sleep
+  390  systemctl start sleep
+  391  systemctl status sleep
+  392  kill -9 7684
+  393  systemctl status sleep
+  394  history
+  395  systemctl list-unit-files
+  396  systemctl get-default
+  397  systemctl list-dependencies 
+  398  vim /etc/systemd/system/sleep.service
+  399  systemctl enable sleep.service
+  400  systemctl show sleep.service
+  401  man systemd-directives
+  402  man systemd.directives
+  403  man systemd.resource-control
+  404  systemctl edit sleep.service
+  405  systemctl edit sshd.service
+  406  echo export EDITOR=/usr/bin/vim >> ~/.bashrc
+  407  source ~/.bashrc 
+  408  systemctl edit sshd.service
+  409  systemctl status sshd
+  410  systemctl cat sshd.service
+  411  dnf install -y httpd nginx
+  412  systemctl status httpd
+  413  systemctl enable --now httpd
+  414  systemctl status nginx
+  415  systemctl mask nginx
+  416  ls -l /etc/systemd/system/
+  417  ls -l /etc/systemd/system/*service
+  418  systemctl start nginx
+  419  systemctl unmask nginx.service
+  420  systemctl status sshd
+  421  journalctl
+  422  journalctl -xb
+  423  systemctl -xu httpd
+  424  systemctl -u httpd
+  425  journalctl -xu httpd
+  426  journalctl -p err
+  427  cat /etc/fstab
+  428  ls /var/log
+  429  grep -i storage= /etc/systemd/journald.conf 
+  430  mkdir /var/log/journal
+  431  ls -l /var/log/journal/
+  432  systemctl restart systemd-journal-flush
+  433  ls -l /var/log/journal/
+  434  history
+  435  systemctl enable httpd
+  436  systemctl cat sshd
+  437  systemctl edit httpd
+  438  systemctl list-unit-files -t timer
+  439  systemctl list-unit-files fstrim*
+  440  systemctl cat fstrim.timer
+  441  systemctl cat fstrim.service
+  442  systemctl enable --now fstrim.timer
+  443  systemctl status fstrim.service
+  444  man systemd.timer
+  445  man systemd.time
+  446  cat /etc/crontab 
+  447  crontab -e -u linda
+  448  systemctl status crond.service 
+  449  ls /etc/cron*/*
+  450  journalctl -F
+  451  journalctl -f
+  452  history > /tmp/april2025 
