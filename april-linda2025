@@ -1,0 +1,39 @@
+    1  sudo passwd student
+    2  sudo useradd anna
+    3  exit
+    4  sudo passwd root
+    5  exit
+    6  sleep 600 &
+    7  renice --help
+    8  renice -n 19 7539
+    9  renice -n -20 7539
+   10  killall dd
+   11  jobs
+   12  kill 7539 7540
+   13  exit
+   14  mkdir -p ~/.config/systemd/user
+   15  cd .config/systemd/user/
+   16  podman run -d --name mynginx -p 8081:80 nginx
+   17  podman pos
+   18  podman ps
+   19  podman generate systemd --name mynginx --files --new
+   20  ls
+   21  vim container-mynginx.service 
+   22  systemctl --user daemon-reload 
+   23  systemctl --user enable container-mynginx.service 
+   24  systemctl --user status container-mynginx.service 
+   25  history -w
+   26  mkdir -p ~/.config/systemd/user
+   27  cd .config/systemd/user/
+   28  podman run -d --name mynginx -p 8081:80 nginx
+   29  podman pos
+   30  podman ps
+   31  podman generate systemd --name mynginx --files --new
+   32  ls
+   33  vim container-mynginx.service 
+   34  systemctl --user daemon-reload 
+   35  systemctl --user enable container-mynginx.service 
+   36  systemctl --user status container-mynginx.service 
+   37  history -w
+   38  exit
+   39  history > /tmp/april-linda2025

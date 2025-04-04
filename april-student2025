@@ -1,0 +1,233 @@
+    1  touch studentfile
+    2  ls -l studentfile 
+    3  exit
+    4  sudo -i
+    5  sudo -i
+    6  ssh student@192.168.29.148
+    7  history
+    8  sudo -i
+    9  sudo cat /etc/containers/registries.conf
+   10  podman login registry.redhat.io
+   11  history
+   12  podman search ubi
+   13  podman run registry.redhat.io/ubi9 sleep 3600
+   14  podman images
+   15  podman run -d registry.redhat.io/ubi9 sleep 3600
+   16  podman ps
+   17  podman rm magical_fermi 
+   18  podman rm --help
+   19  podman run --help
+   20  podman rm -f magical_fermi 
+   21  podman ps
+   22  podman ps -a
+   23  podman start modest_perlman 
+   24  podman ps
+   25  sudo dnf install container-tools
+   26  git clone https://github.com/sandervanvugt/rhcsa9
+   27  podman info
+   28  cd rhcsa9/
+   29  ls
+   30  vim Containerfile 
+   31  podman build -t sleepy .
+   32  podman images
+   33  podman run sleepy
+   34  podman run sleepy sh
+   35  podman run -it sleepy sh
+   36  man -k Containerfile
+   37  man Containerfile
+   38  sudo dnf provides */Containerfile
+   39  vim Containerfile 
+   40  podman build -t entrysleep .
+   41  podman images
+   42  podman run -it entrysleep sh
+   43  history
+   44  podman run -d sleepy:latest 
+   45  podman ps
+   46  podman image inspect sleepy:latest | less
+   47  podman ps
+   48  podman ps -a
+   49  podman run busybox
+   50  podman ps
+   51  podman ps -a
+   52  podman image inspect busybox:latest | less
+   53  podman run -d mariadb
+   54  podman ps
+   55  podman ps -a
+   56  podman logs b1cd
+   57  podman search mariadb
+   58  podman run --name mydb registry.redhat.io/rhel9/mariadb-1011
+   59  podman ps -a
+   60  podman logs mydb
+   61  skopeo inspect docker://registry.access.redhat.com/rhel9/mariadb-1011 | less
+   62  skopeo inspect docker://registry.redhat.io/rhel9/mariadb-1011 | less
+   63  podman rm mydb
+   64  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password registry.redhat.io/rhel9/mariadb-1011 
+   65  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password -d registry.redhat.io/rhel9/mariadb-1011 
+   66  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password -d --replace registry.redhat.io/rhel9/mariadb-1011 
+   67  podman ps
+   68  history
+   69  podman ps
+   70  podman exec -it mydb sh
+   71  podman ps
+   72  history
+   73  podman run -d -p 80:80 docker.io/library/nginx
+   74  podman run -d -p 8080:80 docker.io/library/nginx
+   75  podman port -a
+   76  podman ps
+   77  sudo firewall-cmd --add-port=8080/tcp --permanent
+   78  sudo firewall-cmd --reload
+   79  sudo semanage port -l | grep 8080
+   80  podman images
+   81  podman image inspect mariadb | less
+   82  podman image inspect mariadb-1011
+   83  podman image inspect mariadb-1011 | less
+   84  podman image inspect mariadb | less
+   85  podman search mariadb | grep ubi9
+   86  podman search mariadb | grep ubi
+   87  podman search mariadb
+   88  cd
+   89  mkdir mydb
+   90  podman stop mydb
+   91  podman rm mydb
+   92  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql registry.redhat.io/rhel9/mariadb-1011
+   93  podman ps -a
+   94  podman inspect mydb
+   95  podman logs mydb
+   96  podman rm mydb
+   97  podman unshare ls -ld mydb
+   98  ls -ld mydb
+   99  podman unshare chown 27 mydb
+  100  podman unshare ls -ld mydb
+  101  ls -ld mydb/
+  102  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql registry.redhat.io/rhel9/mariadb-1011
+  103  podman ps
+  104  podman rm mydb
+  105  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql:Z registry.redhat.io/rhel9/mariadb-1011
+  106  podman ps
+  107  ls -lZd mydb/
+  108  history
+  109  ps faux | less
+  110  ps fauxZ | less
+  111  sudo useradd linda
+  112  sudo passwd linda
+  113  sudo loginctl enable-linger linda
+  114  ssh linda@localhost
+  115  history -w
+  116  podman ps
+  117  podman kill mydb
+  118  ./countdown 1
+  119  ./countdown 12
+  120  podman ps
+  121  podman stop modest_perlman 
+  122  sudo cat /etc/containers/registries.conf
+  123  podman login registry.redhat.io
+  124  history
+  125  podman search ubi
+  126  podman run registry.redhat.io/ubi9 sleep 3600
+  127  podman images
+  128  podman run -d registry.redhat.io/ubi9 sleep 3600
+  129  podman ps
+  130  podman rm magical_fermi 
+  131  podman rm --help
+  132  podman run --help
+  133  podman rm -f magical_fermi 
+  134  podman ps
+  135  podman ps -a
+  136  podman start modest_perlman 
+  137  podman ps
+  138  sudo dnf install container-tools
+  139  git clone https://github.com/sandervanvugt/rhcsa9
+  140  podman info
+  141  cd rhcsa9/
+  142  ls
+  143  vim Containerfile 
+  144  podman build -t sleepy .
+  145  podman images
+  146  podman run sleepy
+  147  podman run sleepy sh
+  148  podman run -it sleepy sh
+  149  man -k Containerfile
+  150  man Containerfile
+  151  sudo dnf provides */Containerfile
+  152  vim Containerfile 
+  153  podman build -t entrysleep .
+  154  podman images
+  155  podman run -it entrysleep sh
+  156  history
+  157  podman run -d sleepy:latest 
+  158  podman ps
+  159  podman image inspect sleepy:latest | less
+  160  podman ps
+  161  podman ps -a
+  162  podman run busybox
+  163  podman ps
+  164  podman ps -a
+  165  podman image inspect busybox:latest | less
+  166  podman run -d mariadb
+  167  podman ps
+  168  podman ps -a
+  169  podman logs b1cd
+  170  podman search mariadb
+  171  podman run --name mydb registry.redhat.io/rhel9/mariadb-1011
+  172  podman ps -a
+  173  podman logs mydb
+  174  skopeo inspect docker://registry.access.redhat.com/rhel9/mariadb-1011 | less
+  175  skopeo inspect docker://registry.redhat.io/rhel9/mariadb-1011 | less
+  176  podman rm mydb
+  177  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password registry.redhat.io/rhel9/mariadb-1011 
+  178  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password -d registry.redhat.io/rhel9/mariadb-1011 
+  179  podman run --name mydb -e MYSQL_ROOT_PASSWORD=password -d --replace registry.redhat.io/rhel9/mariadb-1011 
+  180  podman ps
+  181  history
+  182  podman ps
+  183  podman exec -it mydb sh
+  184  podman ps
+  185  history
+  186  podman run -d -p 80:80 docker.io/library/nginx
+  187  podman run -d -p 8080:80 docker.io/library/nginx
+  188  podman port -a
+  189  podman ps
+  190  sudo firewall-cmd --add-port=8080/tcp --permanent
+  191  sudo firewall-cmd --reload
+  192  sudo semanage port -l | grep 8080
+  193  podman images
+  194  podman image inspect mariadb | less
+  195  podman image inspect mariadb-1011
+  196  podman image inspect mariadb-1011 | less
+  197  podman image inspect mariadb | less
+  198  podman search mariadb | grep ubi9
+  199  podman search mariadb | grep ubi
+  200  podman search mariadb
+  201  cd
+  202  mkdir mydb
+  203  podman stop mydb
+  204  podman rm mydb
+  205  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql registry.redhat.io/rhel9/mariadb-1011
+  206  podman ps -a
+  207  podman inspect mydb
+  208  podman logs mydb
+  209  podman rm mydb
+  210  podman unshare ls -ld mydb
+  211  ls -ld mydb
+  212  podman unshare chown 27 mydb
+  213  podman unshare ls -ld mydb
+  214  ls -ld mydb/
+  215  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql registry.redhat.io/rhel9/mariadb-1011
+  216  podman ps
+  217  podman rm mydb
+  218  podman run -d --name mydb -e MYSQL_ROOT_PASSWORD=password -v /home/student/mydb:/var/lib/mysql:Z registry.redhat.io/rhel9/mariadb-1011
+  219  podman ps
+  220  ls -lZd mydb/
+  221  history
+  222  ps faux | less
+  223  ps fauxZ | less
+  224  sudo useradd linda
+  225  sudo passwd linda
+  226  sudo loginctl enable-linger linda
+  227  ssh linda@localhost
+  228  history -w
+  229  sudo reboot
+  230  cd rhcsa9
+  231  ./countdown 45
+  232  sudo -i
+  233  history > /tmp/april-student2025
