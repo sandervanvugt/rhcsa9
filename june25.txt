@@ -1,0 +1,176 @@
+    1  ls -l $(which yum) $(which dnf)
+    2  df -h
+    3  dd if=/dev/sr0 of=/rhel9.iso bs=1M
+    4  ls -l /rhel9.iso 
+    5  lsblk
+    6  mkdir /repo
+    7  vim /etc/fstab
+    8  mount -a
+    9  vim /etc/fstab
+   10  mount -a
+   11  ls /repo
+   12  ls /repo/BaseOS/
+   13  ls /repo/BaseOS/Packages/
+   14  ls /repo/BaseOS/
+   15  cd
+   16  history
+   17  tail -1 /etc/fstab
+   18  vim /etc/fstab
+   19  sleep 120
+   20  dnf repolist
+   21  dnf config-manager --add-repo=file:///repo/AppStream
+   22  dnf config-manager --add-repo=file:///repo/BaseOS
+   23  dnf repolist
+   24  dnf install nmap
+   25  cd /etc/yum.repos.d/
+   26  ls
+   27  vim repo_BaseOS.repo 
+   28  vim repo_AppStream.repo 
+   29  dnf install nmap
+   30  history
+   31  cat /etc/yum.repos.d/repo_BaseOS.repo 
+   32  cd
+   33  dnf list selinux*
+   34  dnf search seinfo
+   35  dnf search all seinfo
+   36  dnf provides */Containerfile
+   37  dnf install -y git
+   38  git clone https://github.com/sandervanvugt/rhcsa9
+   39  cd rhcsa9/
+   40  ls
+   41  cd labs/
+   42  ls
+   43  ./live-lab1-grade.sh 
+   44  cd ..
+   45  ls
+   46  ./countdown 14
+   47  cd
+   48  cd /etc
+   49  tar -cvzf /root/archive.tgz .
+   50  cd
+   51  tar tvf archive.tgz 
+   52  history
+   53  cat /etc/passwd
+   54  cut -d : -f 1 /etc/passwd
+   55  cut -d : -f 1 /etc/passwd | sort
+   56  cut -d : -f 1 /etc/passwd | sort | grep -v '^$'
+   57  cut -d : -f 1 /etc/passwd | sort | grep -v '^$' > /var/tmp/users
+   58  cat /var/tmp/users
+   59  useradd bob
+   60  id bob
+   61  mkdir /root/userfiles
+   62  find / -user bob
+   63  find / -user bob -type f
+   64  find / -user bob -type f -exec cp {} /root/userfiles/ \;
+   65  ls -l userfiles/
+   66  ls -la userfiles/
+   67  cd rhcsa9/labs/
+   68  ls
+   69  ./live-lab1-grade.sh 
+   70  history
+   71  visudo
+   72  exit
+   73  visudo
+   74  ls -ld /etc/sudoe*
+   75  ls -l /etc/sudoers.d/
+   76  visudo
+   77  passwd bob
+   78  su - bob
+   79  cd rhcsa9/
+   80  ./countdown 1
+   81  vim /etc/passwd
+   82  vim /etc/shadow
+   83  useradd --help | less
+   84  useradd linda
+   85  id linda
+   86  passwd --help
+   87  vim /etc/login.defs
+   88  cd /etc/skel
+   89  ls -a
+   90  touch newfile
+   91  useradd lisa
+   92  ls -al /home/lisa
+   93  passwd linda
+   94  cat /etc/shadow
+   95  passwd lisa
+   96  cat /etc/shadow
+   97  cd
+   98  id linda
+   99  usermod -G wheel linda
+  100  id linda
+  101  groupadd sales
+  102  usermod -G sales linda
+  103  id linda
+  104  usermod -aG wheel linda
+  105  id linda
+  106  grep linda /etc/passwd
+  107  grep linda /etc/shadow
+  108  grep linda /etc/group
+  109  su - linda
+  110  usermod -aG student linda
+  111  id linda
+  112  groupdel sales
+  113  id linda
+  114  ls -l /home/linda
+  115  chgrp 1002 /home/linda/linda2
+  116  ls -l /home/linda
+  117  passwd --help
+  118  change linda
+  119  chage linda
+  120  grep linda /etc/shadow
+  121  history
+  122  vim /etc/login.defs 
+  123  touch /etc/skel/newfile
+  124  for i in anna anouk linda lisa; do useradd $i; done
+  125  for i in anna anouk linda lisa; do echo password | passwd --stdin $i; done
+  126  groupadd students
+  127  groupadd profs
+  128  usermod -aG profs anna
+  129  usermod -aG profs anouk
+  130  usermod -aG students linda
+  131  usermod -aG students lisa
+  132  cd rhcsa9/labs/
+  133  ls
+  134  ./live-lab2-grade.sh 
+  135  man chpasswd 
+  136  mkdir -p /data/profs /data/students
+  137  cd /data
+  138  ls -l
+  139  chown :profs profs
+  140  ls -l
+  141  chgrp students students
+  142  ls -l
+  143  chmod 770 profs
+  144  ls -l
+  145  chmod g+w,o-rx students
+  146  ls -l
+  147  cd profs
+  148  su - anna
+  149  cd ..
+  150  chmod g+s profs
+  151  ls -l
+  152  su - anna
+  153  su - anouk
+  154  chmod +t profs/
+  155  ls -l
+  156  su - anouk
+  157  history
+  158  lsblk
+  159  poweroff
+  160  lsblk
+  161  dnf search virt
+  162  dnf install open-vm-tools open-vm-tools-desktop
+  163  history
+  164  cd rhcsa9/labs/
+  165  ls
+  166  mkdir -p /data2/students /data2/profs
+  167  cd /data2
+  168  ls -l
+  169  chgrp profs profs
+  170  chgrp students students
+  171  ls -l
+  172  chmod 770 *
+  173  ls -l
+  174  ls -l /etc/shadow
+  175  cat /etc/shadow
+  176  history > /tmp/june25.txt
