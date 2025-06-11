@@ -157,20 +157,164 @@
   157  history
   158  lsblk
   159  poweroff
-  160  lsblk
-  161  dnf search virt
-  162  dnf install open-vm-tools open-vm-tools-desktop
-  163  history
-  164  cd rhcsa9/labs/
-  165  ls
-  166  mkdir -p /data2/students /data2/profs
-  167  cd /data2
-  168  ls -l
-  169  chgrp profs profs
-  170  chgrp students students
-  171  ls -l
-  172  chmod 770 *
-  173  ls -l
-  174  ls -l /etc/shadow
-  175  cat /etc/shadow
-  176  history > /tmp/june25.txt
+  160  cd rhcsa9/
+  161  ./countdown 5
+  162  lsblk
+  163  umount /xfs
+  164  vim /etc/fstab
+  165  fdisk /dev/nvme0n2
+  166  reboot
+  167  journctl -bx
+  168  journalctl -bx
+  169  journalctl -xb
+  170  lsblk
+  171  tail -2 /etc/fstab
+  172  blkid
+  173  blkid | awk '/n2p5/ { print $2 '
+  174  blkid | awk '/n2p5/ { print $2 }'
+  175  blkid | awk '/n2p5/ { print $2 }' >> /etc/fstab
+  176  vim /etc/fstab
+  177  exit
+  178  lsblk
+  179  blkid
+  180  tune2fs -L hello /dev/nvme0n2p5
+  181  blkid
+  182  history
+  183  less /proc/meminfo 
+  184  fdisk /dev/nvme0n2
+  185  free -m
+  186  mkswap /dev/nvme0n2p1
+  187  vim /etc/fstab
+  188  free -m
+  189  swapon -a
+  190  free -m
+  191  history
+  192  poweroff
+  193  cd rhcsa9/
+  194  ./countdown 10
+  195  lsblk
+  196  fdisk /dev/nvme0n3
+  197  mkfs.ext4 /dev/nvme0n3p1
+  198  mkdir -p /mounts/files
+  199  blkid | awk '/n3p1/ { print $2 }'
+  200  echo $(blkid | awk '/n3p1/ { print $2 }')
+  201  echo $(blkid | awk '/n3p1/ { print $2 }')  /mounts/files  ext4  defaults  0 0 >> /etc/fstab
+  202  vim /etc/fstab
+  203  mkdir /mounts/xfs
+  204  mkfs.xfs /dev/nvme0n3p5
+  205  xfs_admin -L myxfs /dev/nvme0n3p5
+  206  vim /etc/fstab
+  207  mkswap /dev/nvme0n3p6
+  208  vim /etc/fstab
+  209  mount -a
+  210  swapon -a
+  211  free -m
+  212  lsblk
+  213  reboot
+  214  cd rhcsa9/
+  215  ./countdown 12
+  216  exit
+  217  cd rhcsa9/labs/
+  218  ls
+  219  ./live-lab4-grade.sh 
+  220  history
+  221  cd
+  222  dd if=/dev/zero of=/dev/null &
+  223  top
+  224  lscpu | less
+  225  echo 0 > /sys/bus/cpu/devices/cpu1/online 
+  226  lscpu | less
+  227  dd if=/dev/zero of=/dev/null &
+  228  top
+  229  kill 7171 7170 6341
+  230  man nice
+  231  cd /proc/sys
+  232  ls
+  233  cd vm
+  234  ls
+  235  cat swappiness 
+  236  echo 150 > swappiness 
+  237  cat swappiness 
+  238  cd ..
+  239  sysctl -a
+  240  sysctl -a | wc -l
+  241  cd
+  242  tuned-adm list
+  243  tuned-adm recommend
+  244  tuned-adm profile powersave
+  245  tuned-adm list
+  246  history
+  247  pkill --help
+  248  loginctl
+  249  loginctl --help
+  250  loginctl list-user
+  251  loginctl list-users
+  252  loginctl kill-user linda
+  253  loginctl list-users
+  254  ip a
+  255  systemctl status NetworkManager
+  256  nmtui
+  257  exit
+  258  ip a
+  259  man -k nmcli
+  260  man nmcli-examples
+  261  history
+  262  vim /etc/hosts
+  263  cd /etc/NetworkManager/system-connections/
+  264  ls
+  265  vim ens160.nmconnection 
+  266  ip a
+  267  ip a a dev ens160 10.0.0.10/24
+  268  ip a
+  269  history
+  270  cd
+  271  systemctl -t help
+  272  cd /etc/systemd/system/
+  273  vim sleep.service
+  274  systemctl daemon-reload
+  275  systemctl start sleep.service 
+  276  systemctl status sleep.service
+  277  systemctl enable sleep.service 
+  278  kill -9 9267
+  279  systemctl status sleep.service
+  280  dnf install -y httpd.service
+  281  dnf install -y httpd
+  282  systemctl cat httpd.service
+  283  systemctl list-unit-files
+  284  systemctl list-units
+  285  systemctl list-units -t service
+  286  systemctl status sshd
+  287  systemctl cat httpd.service
+  288  systemctl cat sshd.service
+  289  systemctl edit httpd.service
+  290  systemctl cat httpd.service
+  291  systemctl status httpd
+  292  systemctl start httpd
+  293  bg
+  294  systemctl show httpd.service
+  295  man systemd.directives
+  296  man systemd.resource-control
+  297  man -k systemd | wc -l
+  298  man systemd.mount
+  299  vim /etc/bashrc
+  300  source /etc/bashrc
+  301  systemctl edit httpd.service
+  302  systemctl mask httpd.service
+  303  systemctl start httpd.service
+  304  systemctl unmask httpd.service
+  305  ls /var/log/
+  306  journalctl
+  307  less /var/log/messages 
+  308  journalctl -p err
+  309  journalctl -u sshd.service
+  310  journalctl -xb
+  311  grep Storage /etc/systemd/journal.conf
+  312  cat /etc/redhat-release 
+  313  find /usr -name journal.conf
+  314  grep -R /usr/* 'Storage='
+  315  grep Storage /etc/systemd/journald.conf
+  316  mkdir /var/log/journal
+  317  systemctl restart systemd-journal-flush
+  318  ls /var/log/journal/
+  319  cd
+  320  history > /tmp/june25.txt
