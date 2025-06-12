@@ -318,3 +318,213 @@
   318  ls /var/log/journal/
   319  cd
   320  history > /tmp/june25.txt
+  321  su - linda
+  322  exit
+  323  cd rhcsa9/
+  324  ./countdown 6
+  325  su - linda
+  326  ssh linda@localhost
+  327  ./countdown 15
+  328  ls
+  329  ./countdown 8
+  330  lsblk
+  331  fdisk /dev/nvme0n3
+  332  pvcreate /dev/nvme0n3p7
+  333  pvs
+  334  vgcreate vgdata /dev/nvme0n3p7
+  335  pvs
+  336  vgs
+  337  vgdisplay vgdata
+  338  lvcreate -n lvdata -L 1G vgdata
+  339  lvcreate -n lvdata -l 100%FREE vgdata
+  340  lvs
+  341  mkfs.ext4 /dev/vgdata/lvdata
+  342  mkdir /lvdata
+  343  vim /etc/fstab
+  344  mount -
+  345  mount -a
+  346  mount
+  347  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata 
+  348  history
+  349  vgsd
+  350  vgs
+  351  lvs
+  352  df -h
+  353  lvs
+  354  vgs
+  355  vgextend vgdata /dev/nvme0n3p8
+  356  vgs
+  357  lvextend -r -l 50%FREE /dev/vgdata/lvdata
+  358  lvextend -r -l +50%FREE /dev/vgdata/lvdata
+  359  cd rhcsa9/labs/
+  360  ls
+  361  history
+  362  fdisk /dev/nvme0n3
+  363  vgcreate vgdb /dev/nvme0n3p10
+  364  lvcreate -L 1020M -n lvdb vgdb
+  365  mkfs.xfs /dev/vgdb/lvdb
+  366  vim /etc/fstab
+  367  mkdir /mounts/lvdb
+  368  mount -
+  369  mount -A
+  370  mount -a
+  371  mount
+  372  lvs
+  373  vgs
+  374  vgextend rhel /dev/nvme0n3p9
+  375  vgs
+  376  lvextend -r -l +100%FREE /dev/rhel/root 
+  377  df -h
+  378  ls
+  379  ./live-lab9-grade.sh 
+  380  history
+  381  reboot
+  382  touch ff
+  383  mount
+  384  mount -o remount,rw /
+  385  touch hhh
+  386  reboot
+  387  history
+  388  getenforce
+  389  vim /etc/httpd/conf/httpd.conf 
+  390  mkdir /web
+  391  vim /web/index.html
+  392  systemctl status httpd
+  393  systemctl enable --now httpd
+  394  curl localhost
+  395  cd
+  396  getenforce
+  397  setenforce permissive
+  398  curl localhost
+  399  vim /web/index.html
+  400  history
+  401  vim /etc/httpd/conf/httpd.conf 
+  402  systemctl restart httpd
+  403  curl localhost
+  404  getenforce
+  405  setenforce enforcing
+  406  curl localhost
+  407  ps -Zaux
+  408  ps -Zaux | grep http
+  409  ls -Z /var/www
+  410  ls -Zd /web
+  411  ls -Z /web
+  412  grep AVC /var/log/audit/audit.log 
+  413  man semanage-fcontext
+  414  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  415  ls -Zd /web
+  416  restorecon -Rv /web
+  417  getenforce
+  418  curl localhost
+  419  history
+  420  ls -Z /var/www
+  421  man -k _selinux
+  422  dnf install selinux-policy-doc
+  423  man -k _selinux
+  424  man -k _selinux | wc -l
+  425  man -k _selinux | grep http
+  426  man httpd_selinux
+  427  history
+  428  man semanage-port
+  429  man semanage-boolean
+  430  getsebool -a
+  431  getsebool -a | grep ftp
+  432  setsebool -P ftpd_anon_write on
+  433  getsebool -a | grep ftp
+  434  semanage boolean -l -C
+  435  semanage fcontext -l -C
+  436  semanage port -l -C
+  437  journalctl | grep sealert
+  438  sealert -l 4a198dde-a0a6-4ddd-bb65-4de8aa82372c | less
+  439  vim /etc/httpd/conf/httpd.conf 
+  440  systemctl restart httpd
+  441  systemctl status httpd
+  442  journalctl -xeu httpd.service
+  443  journalctl -u httpd.service
+  444  grep AVC /var/log/audit/audit.log 
+  445  journalctl | grep sealert
+  446  sealert -l 19854b72-7c98-406d-90d5-60e44d8c276c | less
+  447  man semanage-port
+  448  semanage port -a -t http_port_t -p tcp 82
+  449  systemctl restart httpd
+  450  history
+  451  mv /etc/hosts /var/www/html/
+  452  ls -Z /var/www/html/hosts 
+  453  restorecon -Rv /var/www/html
+  454  ls -Zd /etc
+  455  cp /var/www/html/hosts /etc
+  456  ls -Z /etc/hosts
+  457  ls -Z /etc
+  458  touch /etc/sander.txt
+  459  ls -Z /etc/sander.txt 
+  460  vim /etc/hosts
+  461  showmount -e nfsserver
+  462  dnf install -y nfs-utils
+  463  showmount -e nfsserver
+  464  mount nfsserver:/nfsdata /mnt
+  465  ls /mnt
+  466  mount
+  467  history
+  468  umount /mnt
+  469  showmount -e nfsserver
+  470  vim /etc/auto.master
+  471  dnf install -y autofs
+  472  vim /etc/auto.master
+  473  vim /etc/auto.misc
+  474  vim /etc/auto.master
+  475  vim /etc/auto.nfsdata
+  476  systemctl enable --now autofs
+  477  cd /nfsdata/
+  478  ls -a
+  479  cd files
+  480  mount
+  481  ls
+  482  cd
+  483  vim /etc/auto.master
+  484  vim /etc/auto.ldap
+  485  systemctl restart autofs
+  486  cd /home/ldap/
+  487  ls -a
+  488  cd ldapuser1
+  489  cd ../ldapuser3
+  490  cd ..
+  491  ls
+  492  mount
+  493  cd /usr/lib/firewalld/services/
+  494  ls
+  495  vim nebula.xml 
+  496  firewall-cmd --get-services
+  497  firewall-cmd --get-services | grep nebu
+  498  cp nebula.xml /etc/firewalld/services/sander.xml
+  499  cd /etc/firewalld/services/
+  500  vim sander.xml 
+  501  firewall-cmd --reload
+  502  firewall-cmd --get-services | grep sander
+  503  cd
+  504  firewall-cmd --get-services
+  505  firewall-cmd --add-service http
+  506  firewall-cmd --list-all
+  507  firewall-cmd --list-all --permanent
+  508  timedatectl status
+  509  timedatectl list-timezones
+  510  timedatectl set-timezone America/Bogota
+  511  timedatectl status
+  512  timedatectl set-timezone Europe/Amsterdam
+  513  systemctl status chronyd
+  514  chronyd sources
+  515  chronyc sources
+  516  vim /etc/chrony.conf 
+  517  systemctl restart chronyd
+  518  chronyc sources
+  519  systemctl list-units -t timer
+  520  systemctl cat logrotate.timer
+  521  systemctl status logrotate.timer
+  522  systemctl status logrotate.service
+  523  cd rhcsa9/
+  524  ls
+  525  cd
+  526  ls /etc/cron*/*
+  527  crontab -u linda -e
+  528  sleep 55
+  529  journalctl
+  530  history > /tmp/june25.txt 
